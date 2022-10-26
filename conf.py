@@ -100,6 +100,10 @@ revealjs_css_files = [
     # "revealjs4/plugin/highlight/zenburn.css",
     "theme.css",
 ]
+revealjs_js_files = [
+    "main.js",
+]
+revealjs_use_section_ids = True
 
 # -- Options for HTMLHelp output ---------------------------------------------
 htmlhelp_basename = "sphinx-revealjsdoc"

@@ -32,10 +32,6 @@ recomienda ejecutar los siguientes pasos en un
     sassc _static/theme.scss _static/theme.css
     # Compilar presentación
     make revealjs
-    # Copiar ficheros faltantes de Revealjs (requerido por usar versión modificada)
-    wget https://files.pythonhosted.org/packages/18/b2/ed4468b5a6e2ef423cddd9ad018e28daf9992df26dd96517e40a10949ed8/sphinx-revealjs-1.0.1.tar.gz
-    tar -zxvf sphinx-revealjs-1.0.1.tar.gz
-    mv sphinx-revealjs-1.0.1/sphinx_revealjs/themes/sphinx_revealjs/static/revealjs4 _build/revealjs/_static/
 
 Tras la compilación puede verse los ficheros resultantes en el directorio ``_build``.
 

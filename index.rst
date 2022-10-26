@@ -126,7 +126,6 @@ Gracias
 .. revealjs_break::
     :notitle:
 
-Foo
 
 .. code-block:: python
 
