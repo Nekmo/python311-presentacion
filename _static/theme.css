@@ -519,6 +519,9 @@ ul li {
 #novedades-en-el-tipado strong {
   font-family: "Nanum Brush Script"; }
 
+#pep-646-variadic-generics strong, #pep-681-data-class-transforms strong {
+  display: block; }
+
 #pep-655-typeddict-required-notrequired {
   font-size: 0.8em; }
   #pep-655-typeddict-required-notrequired strong {
