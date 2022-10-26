@@ -8,9 +8,9 @@
   :alt: Latest CI build status
 
 
-===============================================
-Construyendo APIs con **Django Rest Framework**
-===============================================
+=================================
+¿Qué hay de nuevo en Python 3.11?
+=================================
 
 Presentación para `Python Málaga <https://www.meetup.com/es-ES/python_malaga/>`_ el día 27 de octubre 2022. Puedes
 utilizar esta misma presentación, íntegra o con modificaciones para cualquiera de los usos descritos en la licencia
