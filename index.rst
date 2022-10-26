@@ -93,7 +93,7 @@ Listado cambios
 * **PEP 657:** Mejoras en las indicaciones de error en los tracebacks.
 * Opción ``-P`` en la línea de comandos y variable de entorno ``PYTHONSAFEPATH``.
 * **PEP 646:** Variadic Generics.
-* **PEP 655:** Marcar individualmente elementos de un TypedDict como requeridos o potencialmente indefinidos.
+* **PEP 655:** TypedDict Required/NotRequired.
 * **PEP 673:** Tipo Self.
 * **PEP 675:** Tipo de cadena literal arbitraria
 * **PEP 681:** Data Class Transforms
@@ -382,7 +382,7 @@ PEP 657: Mejoras en las indicaciones de error en los tracebacks
    acceder a un diccionario dentro de otro dentro de otro, y que a partir de cierto punto sea un None y no saber en
    qué nivel ocurre. Pues ahora se te indica. Con flechitas. ¿Qué más podemos pedir?
 
-PEP 680: tomllib
+PEP 680: Tomllib
 ================
 
 .. Y ahora, algo completamente diferente. Tenemos un nuevo módulo en la biblioteca estándar, Tomlib. ¿Pero qué significa
@@ -447,6 +447,276 @@ Tom's Obvious, Minimal Language
 
 .. Leer un fichero toml es muy sencillo, muy similar a como se hace con el módulo de json. No obstante, curiosamente
    no disponemos de un método de hacer un dump, por lo que no podemos escribir.
+
+
+Novedades en el tipado
+======================
+
+.. Y ahora, llega la sección favorita para los **tipos** que les gustan los *tipos*.
+
+.. revealjs_break::
+    :notitle:
+
+.. image:: images/badum.png
+
+.. No me lo tengáis en cuenta, por favor.
+
+
+PEP 646: Variadic Generics
+==========================
+
+.. Comenzamos con una novedad en el tipado de los generics, que nos permite tener tipados de salida en los métodos en
+   función de cómo se defina para nuestra clase. Esta característica es interesante para módulos como TensorFlow, aunque
+   para el público general tiene pocos usos.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    from typing import Tuple, Generic, TypeVarTuple, TypeVar
+
+
+    T = TypeVar('T')
+    Ts = TypeVarTuple('Ts')  # Esta es la novedad
+
+
+    class Array(Generic[*Ts]):  # Aquí usamos el TypeVarTuple como definición para el tipo
+        def multiply(self, x: int) -> Tuple[*Ts]:  # Y aquí como return
+            ...
+
+        def add_dimension(self, t: T) -> Tuple[T, *Ts]:
+            ...
+
+
+    my_array: Array[float, int, str] = Array()  # Ts en este caso será [float, int, str]
+    my_array.multiply(2)  # El tipo devuelto será Tuple[float, int, str]
+    my_array.add_dimension("spam")  # El tipo devuelto será Tuple[str, float, int, str]
+
+.. Bien, aquí tenemos nuestra propia clase Array, la cual puede recibir una definición de tipos cualesquiera llamada Ts,
+   la cual usa el nuevo TypeVarTuple. Como podemos ver, multiply devuelve estos mismos valores de entrada, y
+   add_dimension permite añadir un parámetro adicional.
+
+
+.. revealjs_break::
+    :notitle:
+    :data-background-color: #000000
+    :data-background-image: _static/confused.gif
+
+
+.. Esto puede parecer complicado, porque es complicado. Es un caso poco utilizado que es útil en ciertas bibliotecas de
+   uso científico y que pueden requerir de vectores.
+
+
+PEP 655: TypedDict Required/NotRequired
+=======================================
+
+.. Seguimos con una novedad muy importante TypedDict, de mis cosas favoritas en el tipado. La posibilidad de marcar
+   claves como no requeridas de forma más fácil.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    from typing import TypedDict
+
+
+    class Person(TypedDict, total=False):
+        name: str  # Queremos que sea obligatorio pero no lo es
+        surname: str  # Queremos que sea obligatorio pero no lo es
+        age: int
+
+    person: Person = {"name": "Juan", "surname": "Luna"}
+
+
+.. Hasta ahora, la única forma de marcar claves como no requeridas era decir si la *totalidad* de las claves deben ser
+   requeridas, o ninguna era requerida. Pero no se podían marcar una por una como requerida o no. Para ello teníamos el
+   total.
+
+.. revealjs_break::
+    :notitle:
+
+
+.. code-block:: python
+
+    from typing import TypedDict
+
+
+    class PersonRequired(TypedDict, total=True):
+        name: str
+        surname: str
+
+
+    class Person(PersonRequired, total=False):
+        age: int
+
+    person: Person = {"name": "Juan", "surname": "Luna"}
+
+.. Si queríamos que una clave sea requerida pero otras no, hasta ahora la única manera era hacer dos clases distintas,
+   y definir en cada una de ellas si el total es True o False.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    from typing import NotRequired, Required, TypedDict
+
+
+    class Person(TypedDict):  # total=True por defecto
+        name: str
+        surname: str
+        age: NotRequired[int]  # age no será requerido por el NotRequired[]
+
+
+    person: Person = {"name": "Juan", "surname": "Luna"}
+
+.. Lo que trae nuevo este nuevo PEP con los nuevos Required y NotRequired, que permiten definir claves requeridas o
+   no requeridas. En este caso todo el requerido salvo el age, que lo marcamos como no requerido.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    from typing import NotRequired, Required, TypedDict
+
+
+    class Person(TypedDict, total=False):
+        name: Required[str]
+        surname: Required[str]
+        age: int
+
+
+    person: Person = {"name": "Juan", "surname": "Luna"}
+
+.. También podemos hacerlo al revés, marcando todo como como no requerido con el total False, y marcar uno por uno como
+   requerido.
+
+.. revealjs_break::
+    :notitle:
+    :data-background-color: #000000
+    :data-background-image: _static/thumb.gif
+
+
+.. Como veis, ahora es mucho más fácil y requiere escribir menos código. Y tener que escribir menos código siempre es
+   bien.
+
+
+PEP 673: Tipo Self
+==================
+
+.. Self nos sirve para añadir de forma sencilla la forma de anotar que un método devuelve una instancia de la misma
+   clase. Antes podíamos hacer un apaño con los generics, pero esta forma es más sencilla y encima evitamos problemas
+   de dependencias circulares.
+
+.. revealjs_break::
+    :notitle:
+
+
+.. code-block:: python
+
+    from typing import Self
+
+
+    class Customer:
+
+        def __init__(self, name: str, age: int):
+            self.name = name
+            self.age = age
+
+        def __copy__(self) -> Self:
+            return self.__class__(self.name, self.age)
+
+.. En este ejemplo tenemos un método copy que devuelve una nueva instancia de Customer. En vez de usar genéricos o
+   decir que se devuelve la misma clase, podemos usar el nuevo Self. Mucho más sencillo.
+
+
+PEP 675: LiteralString
+======================
+
+.. El nuevo tipo LiteralString está hecho pensando en la seguridad, para evitar fallos de seguridad como un SQL
+   Injection.
+
+.. revealjs_break::
+    :notitle:
+
+
+.. code-block:: python
+
+    from typing import LiteralString, Iterable, Any
+
+
+    def execute(sql: LiteralString, *params: Iterable[Any]):
+        ...
+
+   # Esta línea validará, porque pasamos los parámetros de forma segura
+   execute("SELECT * FROM data WHERE user_id = ?", [123])
+
+   # Esta línea dará error, porque se modifica el string de entrada previamente
+   execute(f"SELECT * FROM data WHERE user_id = {user_id}")  # MEEH! Error.
+
+.. Usando LiteralString, el string de entrada tendrá que venir tal cual sin manipular tal y como viene en el código
+   fuente. En el primer ejemplo validará porque no se modifica, pero en el segundo al haber una manipulación, al no
+   venir tal cual está en el código fuente, dará un error en el tipado. Como veis este último caso sería un SQL
+   Injection de manual.
+
+
+Más seguridad
+-------------
+
+.. revealjs_section::
+    :data-background-color: #000000
+    :data-background-image: _static/security.gif
+
+
+.. Como veis, con los tipos no sólo podéis evitar problemas de programación típicos, sino también evitar fallos de
+   seguridad en vuestras aplicaciones.
+
+
+PEP 681: Data Class Transforms
+==============================
+
+.. Este PEP es interesante para los creadores de frameworks y bibliotecas, como pueden ser Django, Pydantic o
+   SQLAlchemy.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    # La clase ``ModelBase`` está definida en la biblioteca.
+    @typing.dataclass_transform()
+    class ModelBase: ...
+
+
+    # La clase ``ModelBase`` puede ser usado para crear nuevos modelos,
+    # similar a como se hace en estos frameworks.
+    class CustomerModel(ModelBase):
+        id: int
+
+.. Estas bibliotecas han creado sus propias clases para crear modelos, similares a los dataclass de Python. Ahora
+   tienen una forma de definir un tipado para sus clases base, para indicar que éstas se comportarán como un dataclass
+   de Python.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    def dataclass_transform(
+        *,
+        eq_default: bool = True,
+        order_default: bool = False,
+        kw_only_default: bool = False,
+        field_specifiers: tuple[type | Callable[..., Any], ...] = (),
+        **kwargs: Any,
+    ) -> Callable[[_T], _T]: ...
+
+.. Por defecto el nuevo tipo se comportará como un dataclass al ser identificado como tipo, aunque usando la función
+   dataclass_transform pueden cambiarse las opciones por defecto hacer la transformación. En conclusión, este tipado es
+   útil si se está creando un modelo de clases similares a los dataclass.
 
 
 ¡Muchas gracias!
