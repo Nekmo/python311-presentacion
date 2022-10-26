@@ -416,7 +416,7 @@ body {
 .reveal pre code {
   max-height: 600px; }
 
-.reveal pre code span {
+.reveal pre code span, .reveal pre code table tr td {
   font-family: monospace;
   text-transform: none; }
 
@@ -523,6 +523,14 @@ ul li {
   font-size: 0.8em; }
   #pep-655-typeddict-required-notrequired strong {
     display: block; }
+
+#como-puedo-conseguirlo strong {
+  color: #2b5b84;
+  font-size: 2em; }
+
+#muchas-gracias strong {
+  color: #2b5b84;
+  font-size: 2em; }
 
 #continuamos h2, #continuamos h3, #mas-seguridad h2, #mas-seguridad h3, #python-te-necesita h2, #python-te-necesita h3 {
   font-weight: bold;

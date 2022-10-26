@@ -164,7 +164,7 @@ body::before {
   max-height: 600px;
 }
 
-.reveal pre code span {
+.reveal pre code span, .reveal pre code table tr td {
     font-family: monospace;
    	text-transform: none;
 }
@@ -335,6 +335,21 @@ ul li {
 
   strong {
     display: block;
+  }
+
+}
+
+#como-puedo-conseguirlo {
+  strong {
+    color: $hotPink;
+    font-size: 2em;
+  }
+}
+
+#muchas-gracias {
+  strong {
+    color: $hotPink;
+    font-size: 2em;
   }
 
 }

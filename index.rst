@@ -12,6 +12,10 @@
 ¿Qué hay de nuevo en **Python 3.11**?
 =====================================
 
+.. revealjs_section::
+    :data-transition: zoom
+
+
 .. image:: images/python-logo.*
   :width: 200
 
@@ -26,6 +30,10 @@
 
 Marzo 2020
 ----------
+
+.. revealjs_section::
+    :data-transition: convex
+
 
 .. La última vez fue el 4 de marzo de 2020. Mes que muchos recordaréis.
 
@@ -70,6 +78,10 @@ Sobre mí **Nekmo**
 |                                    |
 +------------------------------------+
 
+.. revealjs_section::
+    :data-transition: concave
+
+
 .. Pero bueno, dejad de que me presente. Soy Juan José, más conocido en redes como Nekmo, y llevo programando en
    Python más de media vida.
 
@@ -105,6 +117,9 @@ Listado cambios
 * Módulos obsoletos (PEP 594),  Py_UNICODE API eliminada (PEP 624) y macros convertidas a funciones estáticas en línea
   (PEP 670).
 
+.. revealjs_section::
+    :data-transition: zoom
+
 
 .. Pues este sería el listado de todos los cambios, los cuales se pueden consultar en la web oficial de Python.
    El más importante son los exception groups para agrupar excepciones, mejoras en los tracebacks, el nuevo módulo
@@ -127,7 +142,8 @@ Gracias
     :notitle:
 
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-2,7,12|11-14|5-7|13-14
 
     class NameError(Exception):
         pass
@@ -145,12 +161,13 @@ Gracias
         print(err)  # Salta el error
 
 
-.. Aquí tenemos una excepción tradicional de Python, a lo cual lo normal es lanzar una única excepción y capturarla.
-   En la función validamos la entrada, y si no valida se lanza una excepción, la cual se captura en el except y
-   se muestra por pantalla.
+.. Aquí tenemos una excepción tradicional de Python, a lo cual lo normal es lanzar una única excepción (1) y
+   capturarla (2). En la función validamos la entrada, y si no valida se lanza una excepción (3),
+   la cual se captura en el except y se muestra por pantalla (4).
 
 .. revealjs_break::
     :notitle:
+    :data-transition: zoom
 
 
 .. image:: images/validacion-formulario.png
@@ -161,7 +178,9 @@ Gracias
 .. revealjs_break::
     :notitle:
 
-.. code-block:: python
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 13,17|8-10,14,19|21|22-23
 
     from typing import Iterable, Tuple, Dict, Callable
 
@@ -188,8 +207,8 @@ Gracias
         raise ExceptionGroup("errors message", exceptions)
 
 
-.. En este segundo ejemplo iteramos sobre todos los valores del formulario, aplicamos su validación y si hay un
-   error lo añadimos al listado de excepciones. Si hay errores lanzamos el ExceptionGroup con sus exceptions.
+.. En este segundo ejemplo iteramos sobre todos los valores del formulario (1), aplicamos su validación (2) y si hay un
+   error lo añadimos al listado de excepciones (3). Si hay errores lanzamos el ExceptionGroup con sus exceptions (4).
 
 .. revealjs_break::
     :notitle:
@@ -209,7 +228,8 @@ except*
 .. revealjs_break::
     :notitle:
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-8|3-5|6-8
 
     try:
         read_inputs()
@@ -265,7 +285,8 @@ except*
 .. revealjs_break::
     :notitle:
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 2|3|4|5
 
     try:
          raise TypeError('bad type')
@@ -273,18 +294,19 @@ except*
          e.add_note('¡Ah, ah, ah! ¡No has dicho la palabra mágica!')
          raise
 
-.. En este ejemplo se produce una excepción, se captura, se le añade una nota usando el nuevo método add_note,
-   disponible en Exception, y se vuelve a lanzar ya con la nota.
+.. En este ejemplo se produce una excepción (1), se captura (2), se le añade una nota usando el nuevo método add_note
+   disponible en Exception (3), y se vuelve a lanzar ya con la nota (4).
 
 .. revealjs_break::
     :notitle:
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-4|4
 
     Traceback (most recent call last):
       File "<stdin>", line 2, in <module>
     TypeError: bad type
-    Add some information
+    ¡Ah, ah, ah! ¡No has dicho la palabra mágica!
 
 .. Y cuando se produce la excepción, la nota es mostrada en una segunda línea. Así se simple. Genial para aclaraciones y
    otras anotaciones.
@@ -338,9 +360,11 @@ except*
 
 .. revealjs_break::
     :notitle:
+    :data-auto-animate:
 
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 5-6
 
     Traceback (most recent call last):
       File "distance.py", line 11, in <module>
@@ -355,9 +379,11 @@ except*
 
 .. revealjs_break::
     :notitle:
+    :data-auto-animate:
 
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 4,6-8
 
     Traceback (most recent call last):
       File "distance.py", line 11, in <module>
@@ -374,7 +400,8 @@ except*
 .. revealjs_break::
     :notitle:
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 11-13
 
     Traceback (most recent call last):
       File "query.py", line 37, in <module>
@@ -482,7 +509,8 @@ Novedades en el **tipado**
 .. revealjs_break::
     :notitle:
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 9-14|5,18|10-11,18-19|13-14,18,21|1-21
 
     from typing import Tuple, Generic, TypeVarTuple, TypeVar
 
@@ -506,9 +534,9 @@ Novedades en el **tipado**
     # El tipo devuelto será Tuple[str, float, int, str]
     my_array.add_dimension("spam")
 
-.. Bien, aquí tenemos nuestra propia clase Array, la cual puede recibir una definición de tipos cualesquiera llamada Ts,
-   la cual usa el nuevo TypeVarTuple. Como podemos ver, multiply devuelve estos mismos valores de entrada, y
-   add_dimension permite añadir un parámetro adicional.
+.. Bien, aquí tenemos nuestra propia clase Array (1), la cual puede recibir una definición de tipos cualesquiera
+   llamada Ts, la cual usa el nuevo TypeVarTuple (2). Como podemos ver, multiply devuelve estos mismos valores de
+   entrada (3), y add_dimension permite añadir un parámetro adicional (4).
 
 
 .. revealjs_break::
@@ -529,8 +557,10 @@ Novedades en el **tipado**
 
 .. revealjs_break::
     :notitle:
+    :data-auto-animate:
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-9|4
 
     from typing import TypedDict
 
@@ -545,13 +575,15 @@ Novedades en el **tipado**
 
 .. Hasta ahora, la única forma de marcar claves como no requeridas era decir si la *totalidad* de las claves deben ser
    requeridas, o ninguna era requerida. Pero no se podían marcar una por una como requerida o no. Para ello teníamos el
-   total.
+   total. (1)
 
 .. revealjs_break::
     :notitle:
+    :data-auto-animate:
 
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 4-9|4,9
 
     from typing import TypedDict
 
@@ -566,13 +598,16 @@ Novedades en el **tipado**
 
     person: Person = {"name": "Juan", "surname": "Luna"}
 
-.. Si queríamos que una clave sea requerida pero otras no, hasta ahora la única manera era hacer dos clases distintas,
-   y definir en cada una de ellas si el total es True o False.
+.. Si queríamos que una clave sea requerida pero otras no, hasta ahora la única manera era hacer dos clases distintas
+   (1), y definir en cada una de ellas si el total es True o False. (2)
 
 .. revealjs_break::
     :notitle:
+    :data-auto-animate:
 
-.. code-block:: python
+
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-10|7
 
     from typing import NotRequired, Required, TypedDict
 
@@ -586,12 +621,14 @@ Novedades en el **tipado**
     person: Person = {"name": "Juan", "surname": "Luna"}
 
 .. Lo que trae nuevo este nuevo PEP con los nuevos Required y NotRequired, es que permiten definir claves requeridas o
-   no requeridas. En este caso todo el requerido salvo el age, que lo marcamos como no requerido.
+   no requeridas (1). En este caso todo es requerido salvo el age, que lo marcamos como no requerido.
 
 .. revealjs_break::
     :notitle:
+    :data-transition: zoom
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-10|4|5-6
 
     from typing import NotRequired, Required, TypedDict
 
@@ -604,8 +641,8 @@ Novedades en el **tipado**
 
     person: Person = {"name": "Juan", "surname": "Luna"}
 
-.. También podemos hacerlo al revés, marcando todo como como no requerido con el total False, y marcar uno por uno como
-   requerido.
+.. También podemos hacerlo al revés (1), marcando todo como como no requerido con el total False (2), y marcar uno por
+   uno como requerido.
 
 .. revealjs_break::
     :notitle:
@@ -628,7 +665,8 @@ Novedades en el **tipado**
     :notitle:
 
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 10-11
 
     from typing import Self
 
@@ -656,7 +694,8 @@ Novedades en el **tipado**
     :notitle:
 
 
-.. code-block:: python
+.. revealjs-code-block:: python
+   :data-line-numbers: 1-11|8|11
 
     from typing import LiteralString, Iterable, Any
 
@@ -671,8 +710,8 @@ Novedades en el **tipado**
    execute(f"SELECT * FROM data WHERE user_id = {user_id}")  # MEEH! Error.
 
 .. Usando LiteralString, el string de entrada tendrá que venir sin manipular tal y como viene en el código
-   fuente. En el primer ejemplo validará porque no se modifica, pero en el segundo al haber una manipulación, al no
-   venir tal cual está en el código fuente, dará un error en el tipado. Como veis este último caso sería un SQL
+   fuente (1). En el primer ejemplo validará porque no se modifica (2), pero en el segundo al haber una manipulación,
+   al no venir tal cual está en el código fuente, dará un error en el tipado. Como veis este último caso sería un SQL
    Injection de manual.
 
 
@@ -734,12 +773,14 @@ Más seguridad
 ¿Qué otras novedades hay?
 =========================
 
-* Nuevo argumento ``-P`` en la línea de comandos y variable de entorno ``PYTHONSAFEPATH`` para
-  **evitar ejecutar código inseguro**.
-* **PEP 594**: Eliminar módulos muertos de la librería estándar (deprecated, a eliminar en 3.13).
-* **PEP 624**: Eliminadas las APIs de codificación de Py_UNICODE.
-* **PEP 670**: Convertir macros a funciones en la API en C de Python.
-* **¡Y es más rápido!** (10-60% respecto Python 3.10).
+.. revealjs-fragments::
+
+    * Nuevo argumento ``-P`` en la línea de comandos y variable de entorno ``PYTHONSAFEPATH`` para
+      **evitar ejecutar código inseguro**.
+    * **PEP 594**: Eliminar módulos muertos de la librería estándar (deprecated, a eliminar en 3.13).
+    * **PEP 624**: Eliminadas las APIs de codificación de Py_UNICODE.
+    * **PEP 670**: Convertir macros a funciones en la API en C de Python.
+    * **¡Y es más rápido!** (10-60% respecto Python 3.10).
 
 
 .. ¿Y qué otras novedades hay? Tenemos... (leer puntos).
@@ -754,7 +795,14 @@ https://docs.python.org/3.11/whatsnew/3.11.html
 
 ¿Cómo puedo conseguirlo?
 ========================
-**¡¡Ya disponible!!**
+
+.. revealjs_section::
+    :data-transition: convex
+
+
+.. revealjs-fragments::
+
+    **¡¡Ya disponible!!**
 
 .. ¿Y cómo puedes conseguirlo? Pues bien, ¡ya está disponible! Python 3.11 salió literalmente hace dos días. Podéis
    bajarlo desde la web de Python, desde vuestra distribución si ya lo tuviese o compilándolo desde los fuentes.
@@ -774,6 +822,7 @@ Python te necesita
     :data-background-color: #ffffff
     :data-background-size: contain
     :data-background-image: _static/sam.png
+    :data-transition: zoom
 
 .. Y recordad, que podéis ir probando las nuevas versiones de Python antes de su fecha de lanzamiento oficial. Tras la
    primera beta no suele haber importantes cambios y probándolas y dándoles soporte permitís encontrar fallos en el
@@ -782,11 +831,13 @@ Python te necesita
 ¡Muchas gracias!
 ================
 
-**Referencias**
+.. revealjs-fragments::
 
-* `Qué hay de nuevo en Python 3.11 (doc oficial) <https://docs.python.org/3.11/whatsnew/3.11.html>`_.
-* `Preview exception groups (Real Python) <https://realpython.com/python311-exception-groups/>`_.
-* `Python variadic generics (Anthony Explains) <https://www.youtube.com/watch?v=hAj3nGzeSiQ>`_.
+    **Referencias**
+
+    * `Qué hay de nuevo en Python 3.11 (doc oficial) <https://docs.python.org/3.11/whatsnew/3.11.html>`_.
+    * `Preview exception groups (Real Python) <https://realpython.com/python311-exception-groups/>`_.
+    * `Python variadic generics (Anthony Explains) <https://www.youtube.com/watch?v=hAj3nGzeSiQ>`_.
 
 .. Y hasta aquí la presentación. Os agradezco a todos por venir, y aquí os dejo algunas referencias utilizadas en
    esta presentación.
