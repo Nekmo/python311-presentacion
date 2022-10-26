@@ -74,15 +74,17 @@ Sobre mí **Nekmo**
    Python más de media vida.
 
 
-Python 2.5
-----------
+Python **2.5**
+--------------
 
 .. Mi primera versión de Python fue la 2.5. Han pasado ya muchos años, y con cada nueva versión no
    dejan de traer novedades.
 
 
-¿Qué hay de nuevo en Python 3.11?
-=================================
+
+¿Qué hay de nuevo en **Python 3.11**?
+=====================================
+
 
 .. Ahora, ¿qué hay de nuevo en Python 3.11?
 
@@ -115,8 +117,8 @@ Gracias
    estos cambios, aunque me tendré que detener bastante en el primero de ellos porque es el más importante y más
    interesante.
 
-PEP 654: Exception Groups y except*
-===================================
+**PEP 654:** Exception Groups y except*
+=======================================
 
 .. La primera de estas novedades son los exception groups y el nuevo except* con asterisco, con PEP 654.
 
@@ -124,6 +126,7 @@ PEP 654: Exception Groups y except*
 .. revealjs_break::
     :notitle:
 
+Foo
 
 .. code-block:: python
 
@@ -141,6 +144,7 @@ PEP 654: Exception Groups y except*
         validate_name(form["name"])
     except NameError as err:
         print(err)  # Salta el error
+
 
 .. Aquí tenemos una excepción tradicional de Python, a lo cual lo normal es lanzar una única excepción y capturarla.
    En la función validamos la entrada, y si no valida se lanza una excepción, la cual se captura en el except y
@@ -253,8 +257,8 @@ except*
 
 .. No os preocupéis, esto era lo gordo. Lo que viene son cambios más pequeños, pero muchos muy interesantes.
 
-PEP 678: Enriquecer excepciones con notas
-=========================================
+**PEP 678:** Enriquecer excepciones con notas
+=============================================
 
 .. Y seguimos con excepciones. El nuevo método PEP 678 permite añadir notas, aclaraciones, a las excepciones que se
    lanzan.
@@ -270,7 +274,7 @@ PEP 678: Enriquecer excepciones con notas
          e.add_note('¡Ah, ah, ah! ¡No has dicho la palabra mágica!')
          raise
 
-.. En este ejemplo se añade produce una excepción, se captura, se le añade una nota usando el nuevo método add_note,
+.. En este ejemplo se produce una excepción, se captura, se le añade una nota usando el nuevo método add_note,
    disponible en Exception, y se vuelve a lanzar ya con la nota.
 
 .. revealjs_break::
@@ -327,8 +331,8 @@ PEP 678: Enriquecer excepciones con notas
    conseguir que vuestros tracebacks den miedo! Como este de aquí.
 
 
-PEP 657: Mejoras en las indicaciones de error en los tracebacks
-===============================================================
+**PEP 657:** Mejoras en las indicaciones de error en los tracebacks
+===================================================================
 
 .. Y seguimos con tracebacks de error. Vamos a ver las mejoras que se han hecho en los mensaje de traceback.
 
@@ -346,7 +350,7 @@ PEP 657: Mejoras en las indicaciones de error en los tracebacks
         return abs(point_1.x - point_2.x) + abs(point_1.y - point_2.y)
     AttributeError: 'NoneType' object has no attribute 'x'
 
-.. Hasta ahora en Python, como recordaréis lo habitual cuando hay varias variables en una sola línea y una de ellas es
+.. Hasta ahora en Python, como recordaréis, lo habitual cuando hay varias variables en una sola línea y una de ellas es
    None, la única forma de encontrar la que provocaba el error era ponerse a depurar, porque el error no da bastante
    información.
 
@@ -391,14 +395,12 @@ PEP 657: Mejoras en las indicaciones de error en los tracebacks
    acceder a un diccionario dentro de otro dentro de otro, y que a partir de cierto punto sea un None y no saber en
    qué nivel ocurre. Pues ahora se te indica. Con flechitas. ¿Qué más podemos pedir?
 
-PEP 680: Tomllib
-================
+**PEP 680:** Tomllib
+====================
 
 .. Y ahora, algo completamente diferente. Tenemos un nuevo módulo en la biblioteca estándar, Tomlib. ¿Pero qué significa
    TOML?
 
-.. revealjs_break::
-    :notitle:
 
 Tom's Obvious, Minimal Language
 -------------------------------
@@ -458,8 +460,8 @@ Tom's Obvious, Minimal Language
    no disponemos de un método de hacer un dump, por lo que no podemos escribir.
 
 
-Novedades en el tipado
-======================
+Novedades en el **tipado**
+==========================
 
 .. Y ahora, llega la sección favorita para los **tipos** que les gustan los *tipos*.
 
@@ -471,8 +473,8 @@ Novedades en el tipado
 .. No me lo tengáis en cuenta, por favor.
 
 
-PEP 646: Variadic Generics
-==========================
+**PEP 646:** Variadic Generics
+==============================
 
 .. Comenzamos con una novedad en el tipado de los generics, que nos permite tener tipados de salida en los métodos en
    función de cómo se defina para nuestra clase. Esta característica es interesante para módulos como TensorFlow, aunque
@@ -490,7 +492,8 @@ PEP 646: Variadic Generics
     Ts = TypeVarTuple('Ts')  # Esta es la novedad
 
 
-    class Array(Generic[*Ts]):  # Aquí usamos el TypeVarTuple como definición para el tipo
+    # Aquí usamos el TypeVarTuple como definición para el tipo
+    class Array(Generic[*Ts]):
         def multiply(self, x: int) -> Tuple[*Ts]:  # Y aquí como return
             ...
 
@@ -498,9 +501,11 @@ PEP 646: Variadic Generics
             ...
 
 
-    my_array: Array[float, int, str] = Array()  # Ts en este caso será [float, int, str]
+    # Ts en este caso será [float, int, str]
+    my_array: Array[float, int, str] = Array()
     my_array.multiply(2)  # El tipo devuelto será Tuple[float, int, str]
-    my_array.add_dimension("spam")  # El tipo devuelto será Tuple[str, float, int, str]
+    # El tipo devuelto será Tuple[str, float, int, str]
+    my_array.add_dimension("spam")
 
 .. Bien, aquí tenemos nuestra propia clase Array, la cual puede recibir una definición de tipos cualesquiera llamada Ts,
    la cual usa el nuevo TypeVarTuple. Como podemos ver, multiply devuelve estos mismos valores de entrada, y
@@ -517,10 +522,10 @@ PEP 646: Variadic Generics
    uso científico y que pueden requerir de vectores.
 
 
-PEP 655: TypedDict Required/NotRequired
-=======================================
+**PEP 655:** TypedDict Required/NotRequired
+===========================================
 
-.. Seguimos con una novedad muy importante TypedDict, de mis cosas favoritas en el tipado. La posibilidad de marcar
+.. Seguimos con una novedad muy importante en TypedDict, de mis cosas favoritas en el tipado. La posibilidad de marcar
    claves como no requeridas de forma más fácil.
 
 .. revealjs_break::
@@ -581,7 +586,7 @@ PEP 655: TypedDict Required/NotRequired
 
     person: Person = {"name": "Juan", "surname": "Luna"}
 
-.. Lo que trae nuevo este nuevo PEP con los nuevos Required y NotRequired, que permiten definir claves requeridas o
+.. Lo que trae nuevo este nuevo PEP con los nuevos Required y NotRequired, es que permiten definir claves requeridas o
    no requeridas. En este caso todo el requerido salvo el age, que lo marcamos como no requerido.
 
 .. revealjs_break::
@@ -613,8 +618,8 @@ PEP 655: TypedDict Required/NotRequired
    bien.
 
 
-PEP 673: Tipo Self
-==================
+**PEP 673:** Tipo Self
+======================
 
 .. Self nos sirve para añadir de forma sencilla la forma de anotar que un método devuelve una instancia de la misma
    clase. Antes podíamos hacer un apaño con los generics, pero esta forma es más sencilla y encima evitamos problemas
@@ -642,8 +647,8 @@ PEP 673: Tipo Self
    decir que se devuelve la misma clase, podemos usar el nuevo Self. Mucho más sencillo.
 
 
-PEP 675: LiteralString
-======================
+**PEP 675:** LiteralString
+==========================
 
 .. El nuevo tipo LiteralString está hecho pensando en la seguridad, para evitar fallos de seguridad como un SQL
    Injection.
@@ -666,7 +671,7 @@ PEP 675: LiteralString
    # Esta línea dará error, porque se modifica el string de entrada previamente
    execute(f"SELECT * FROM data WHERE user_id = {user_id}")  # MEEH! Error.
 
-.. Usando LiteralString, el string de entrada tendrá que venir tal cual sin manipular tal y como viene en el código
+.. Usando LiteralString, el string de entrada tendrá que venir sin manipular tal y como viene en el código
    fuente. En el primer ejemplo validará porque no se modifica, pero en el segundo al haber una manipulación, al no
    venir tal cual está en el código fuente, dará un error en el tipado. Como veis este último caso sería un SQL
    Injection de manual.
@@ -684,10 +689,10 @@ Más seguridad
    seguridad en vuestras aplicaciones.
 
 
-PEP 681: Data Class Transforms
-==============================
+**PEP 681:** Data Class Transforms
+==================================
 
-.. Este PEP es interesante para los creadores de frameworks y bibliotecas, como pueden ser Django, Pydantic o
+.. PEP 681. Este PEP es interesante para los creadores de frameworks y bibliotecas, como pueden ser Django, Pydantic o
    SQLAlchemy.
 
 .. revealjs_break::
@@ -723,7 +728,7 @@ PEP 681: Data Class Transforms
         **kwargs: Any,
     ) -> Callable[[_T], _T]: ...
 
-.. Por defecto el nuevo tipo se comportará como un dataclass al ser identificado como tipo, aunque usando la función
+.. Por defecto el nuevo tipo se comportará como un dataclass al ser identificado, aunque usando la función
    dataclass_transform pueden cambiarse las opciones por defecto hacer la transformación. En conclusión, este tipado es
    útil si se está creando un modelo de clases similares a los dataclass.
 
@@ -795,7 +800,7 @@ Python te necesita
 
 `github:Nekmo/python311-presentacion <https://github.com/Nekmo/python311-presentacion>`_
 
-.. Además de a la presentación, por si queréis volver a verla.
+.. Además de la presentación, por si queréis volver a verla.
 
 .. revealjs_break::
     :data-background-color: #ffffff

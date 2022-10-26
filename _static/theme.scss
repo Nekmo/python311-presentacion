@@ -30,6 +30,8 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,700);
 @import url(https://fonts.googleapis.com/css?family=Lora:700);
 @import url(https://fonts.googleapis.com/css?family=Creepster);
+@import url(https://fonts.googleapis.com/css?family=Satisfy);
+@import url(https://fonts.googleapis.com/css?family=Nanum+Brush+Script);
 
 @import url(https://fonts.googleapis.com/css2?family=Allura&display=swap);
 
@@ -158,9 +160,19 @@ body::before {
 }
 
 
+.reveal pre code {
+  max-height: 600px;
+}
+
 .reveal pre code span {
     font-family: monospace;
    	text-transform: none;
+}
+
+.reveal h2, .reveal h3 {
+  strong {
+    color: $sunshine;
+  }
 }
 
 .reveal h1 {
@@ -208,8 +220,8 @@ ul li {
     padding: 15px;
 }
 
-#intro {
-    h1 {
+#intro, #id2 {
+    h1, h2 {
         font-size: 2.5em;
     }
 
@@ -266,6 +278,18 @@ ul li {
     }
 }
 
+#python-2-5 {
+  h3 {
+    font-family: "Satisfy";
+    text-transform: none;
+    font-size: 4em;
+
+    strong {
+      font-family: "Satisfy";
+    }
+  }
+}
+
 
 #listado-cambios {
   ul li {
@@ -278,88 +302,43 @@ ul li {
   }
 }
 
-#django-django-rest-framework {
-    height: 100%;
-    width: 100%;
-    background: url(./heart.svg) center no-repeat;
-    background-size: contain;
 
-    h2 {
-        position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-        font-size: 2.3em;
-        margin-top: -70px;
-        margin-left: 120px;
-        margin-right: 120px;
-    }
+//#ejemplo-web, #formulario, #devuelve-la-salida, #baterias-incluidas {
+//    // margin-top: -100px;
+//    img {
+//        box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+//    }
+//}
 
-    strong {
-        color: $djangoColor;
-    }
-    em {
-        color: #fff;
-    }
+
+#pep-657-mejoras-en-las-indicaciones-de-error-en-los-tracebacks {
+  font-size: 0.8em;
+
+  strong {
+    display: block;
+  }
 }
 
-#ejemplo-web, #formulario, #devuelve-la-salida, #baterias-incluidas {
-    // margin-top: -100px;
-    img {
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
-    }
+#novedades-en-el-tipado {
+  h2 {
+    font-size: 4em;
+    font-family: "Nanum Brush Script";
+  }
+
+  strong {
+    font-family: "Nanum Brush Script";
+  }
 }
 
-#que-es {
-    font-size: 1.5em;
+#pep-655-typeddict-required-notrequired {
+  font-size: 0.8em;
+
+  strong {
+    display: block;
+  }
+
 }
 
-#que-incluye {
-    font-size: 1.2em;
-}
-
-#que-incluye, #viewsets {
-    ul {
-      margin-left: 0;
-      columns: 2;
-      -webkit-columns: 2;
-      -moz-columns: 2;
-    }
-}
-
-#meta-framework {
-    font-size: 0.7em;
-}
-
-#framework-para-desarrollar-apis-rest, #django-rest-framework-complementa, #viewsets, #parsers-y-renderers,
-#otras-opciones-viewsets, #en-resumen, #caracteristicas {
-    strong {
-        color: $linkColor;
-    }
-}
-
-#serializers {
-    strong {
-        color: $linkColor;
-        font-size: 2em;
-    }
-}
-
-#los-serializers-serializan {
-    h3 {
-        text-transform: none;
-        font-style: italic;
-        font-size: 3.5em;
-        font-family: 'Allura', cursive;
-    }
-}
-
-#filtrado-y-paginacion {
-    h3 {
-        font-size: 2em;
-    }
-}
 
 #continuamos, #mas-seguridad, #python-te-necesita {
     h2, h3 {
