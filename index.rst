@@ -583,7 +583,7 @@ Novedades en el **tipado**
 
 
 .. revealjs-code-block:: python
-   :data-line-numbers: 4-9|4,9
+   :data-line-numbers: 4-10|4,9
 
     from typing import TypedDict
 
