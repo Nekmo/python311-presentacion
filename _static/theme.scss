@@ -1,0 +1,354 @@
+/**
+  [ sunblind ]
+  A blindingly sunny theme for Reveal.js with Lora + Leto fonts and a colorful border.
+  By Josh Dzielak, https://dzello.com/, License MIT
+  The bold border is optional and requires some HTML. To use it:
+  1. Add 4 divs to your HTML page:
+    <div class="line top"></div>
+    <div class="line bottom"></div>
+    <div class="line left"></div>
+    <div class="line right"></div>
+  2. Set { margin: 0.2 } in the Reveal.js initializer to make sure
+  your presentation content doesn't collide with the frame.
+  Like the theme but don't like the colors? Don't fret. Just change
+  $borderColor and/or $linkColor below to something else and rebuild.
+  Or if you don't want to rebuild the theme just override the .line background
+  property with some CSS:
+  .line {
+    background: <new-color>;
+  }
+*/
+
+// Default mixins and settings -----------------
+@import "./mixins.scss";
+@import "./settings.scss";
+@import "./monokai.scss";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Lato:300,700);
+@import url(https://fonts.googleapis.com/css?family=Lora:700);
+
+@import url(https://fonts.googleapis.com/css2?family=Allura&display=swap);
+
+
+// store colors in variables
+$hotPink: #A30000;
+$djangoColor: #0C4B33;
+$sunshine: $hotPink;
+// the color of the thick border surrounding the presention
+$borderColor: $hotPink;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #363636;
+$headingColor: #141414;
+
+$mainFontSize: 32px;
+$mainFont: 'Lato', serif;
+$headingFont: 'Lora', sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 700;
+$linkColor: $hotPink;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.0em;
+$heading2Size: 1.8em;
+$heading3Size: 1.4em;
+$heading4Size: 1.2em;
+
+section.has-light-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #141414;
+  }
+}
+
+.reveal .controls {
+  right: 50px;
+  bottom: 50px;
+}
+
+.line {
+  content: '';
+  position: fixed;
+  background: $borderColor;
+  z-index: 105;
+  &.top {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 15px;
+    @media (max-width: 840px) {
+      height: 15px;
+    }
+  }
+  &.bottom {
+    left: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 15px;
+    @media (max-width: 840px) {
+      height: 15px;
+    }
+  }
+  &.left {
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 200%;
+    @media (max-width: 840px) {
+      width: 15px;
+    }
+  }
+  &.right {
+    left: auto;
+    right: 0;
+    top: 0;
+    width: 15px;
+    height: 200%;
+    @media (max-width: 840px) {
+      width: 15px;
+    }
+  }
+}
+
+body::before {
+    content: ' ';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    background: url(background.png) repeat-x;
+    will-change: transform;
+    z-index: -1;
+}
+
+
+// don't show the colored frame against dark backgrounds
+.reveal.has-dark-background {
+  .line {
+    display: none;
+  }
+}
+
+// Theme template ------------------------------
+@import "./template.scss";
+// ---------------------------------------------
+
+.reveal pre code span {
+    font-family: monospace;
+   	text-transform: none;
+}
+
+.reveal h1 {
+    font-size: 3.5em;
+}
+
+.reveal h2 {
+    font-size: 3em;
+}
+
+.reveal h3 {
+    font-size: 2.5em;
+}
+
+.reveal .progress {
+  z-index: 1000;
+  color: darken($sunshine, 25%);
+}
+
+ul li {
+    line-height: 2em;
+}
+
+.has-dark-background {
+    h1, h2, h3 {
+        color: white;
+    }
+
+    ul, p {
+        color: #dedede;
+    }
+
+    strong {
+        color: white;
+    }
+}
+
+.reveal section img {
+    border: 0;
+    box-shadow: 0 0;
+}
+
+.reveal pre code.hljs {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+    padding: 15px;
+}
+
+#intro {
+    h1 {
+        font-size: 2em;
+    }
+
+    strong {
+        display: none;
+    }
+}
+
+#sobre-mi {
+    h2 {
+        width: 40%;
+        font-size: 2.5em;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 100px;
+        text-align: right;
+        line-height: 0.5em;;
+
+        strong {
+            font-size: 0.3em;
+            color: $linkColor;
+        }
+    }
+    table {
+        width: 40%;
+        display: inline-block;
+    }
+}
+
+#listado-cambios {
+  ul li {
+    line-height: 1em;
+
+    p {
+      margin: 5px;
+      font-size: 25px;
+    }
+  }
+}
+
+#django-django-rest-framework {
+    height: 100%;
+    width: 100%;
+    background: url(./heart.svg) center no-repeat;
+    background-size: contain;
+
+    h2 {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        font-size: 2.3em;
+        margin-top: -70px;
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+
+    strong {
+        color: $djangoColor;
+    }
+    em {
+        color: #fff;
+    }
+}
+
+#ejemplo-web, #formulario, #devuelve-la-salida, #baterias-incluidas {
+    // margin-top: -100px;
+    img {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+    }
+}
+
+#django, #django-rest-framework, #antorchas, #pastel-1, #pastel-2, #estructura, #pikachu, #operadores-http {
+    h1, h2, h3 {
+        display: none;
+    }
+
+    img {
+        background: none;
+    }
+}
+
+#que-es {
+    font-size: 1.5em;
+}
+
+#que-incluye {
+    font-size: 1.2em;
+}
+
+#que-incluye, #viewsets {
+    ul {
+      margin-left: 0;
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+    }
+}
+
+#meta-framework {
+    font-size: 0.7em;
+}
+
+#framework-para-desarrollar-apis-rest, #django-rest-framework-complementa, #viewsets, #parsers-y-renderers,
+#otras-opciones-viewsets, #en-resumen, #caracteristicas {
+    strong {
+        color: $linkColor;
+    }
+}
+
+#serializers {
+    strong {
+        color: $linkColor;
+        font-size: 2em;
+    }
+}
+
+#los-serializers-serializan {
+    h3 {
+        text-transform: none;
+        font-style: italic;
+        font-size: 3.5em;
+        font-family: 'Allura', cursive;
+    }
+}
+
+#filtrado-y-paginacion {
+    h3 {
+        font-size: 2em;
+    }
+}
+
+#continuamos, #demo {
+    h2 {
+        font-weight: bold;
+        font-size: 3.6em;
+        text-shadow: #000000 1px 0 10px;
+    }
+}
+
+#vamos-terminando {
+    margin-top: 180px;
+}
+
+
+#y-no-podriamos-reducirlo, #ejemplo-web, #formulario {
+    font-size: 0.6em;
+}
+
+#otros-modulos {
+    a {
+        font-weight: bold;
+    }
+}
+
+

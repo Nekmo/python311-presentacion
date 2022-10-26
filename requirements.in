@@ -1,0 +1,3 @@
+pip-tools
+Sphinx
+sphinx-revealjs==1.5.2

@@ -1,9 +1,4 @@
-.. Construyendo APIs con Django Rest Framework documentation master file, created by
-   sphinx-quickstart on Wed Feb 17 01:02:49 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-.. This toctree is only to link examples.
 
 .. toctree::
    :glob:
@@ -13,19 +8,54 @@
 
 .. _intro:
 
-===============================================
-Construyendo APIs con **Django Rest Framework**
-===============================================
+=================================
+¿Qué hay de nuevo en Python 3.11?
+=================================
 
 .. image:: images/drf_logo.*
 
-.. Buenas, en esta presentación os mostraré cómo construir vuestra propia API Rest con Django Rest Framework,
-   aunque antes de eso me presento...
+.. Hola a todos.
+
+
+👋
+==
+
+.. Hacía mucho que no nos reuníamos para celebrar un meetup Python Málaga.
+
+
+Marzo 2020
+----------
+
+.. La última vez fue el 4 de marzo de 2020. Mes que muchos recordaréis.
+
+
+Estamos de vuelta
+-----------------
+
+.. code-block:: python
+
+    >>> import datetime
+    >>> import humanize
+    >>> delta = datetime.datetime(2022, 10, 27) - datetime.datetime(2020, 3, 4)
+    >>> humanize.i18n.activate("es_ES")
+    >>> print(humanize.precisedelta(delta))
+    2 años, 7 meses y 23 días
+
+
+.. Pero ya estamos aquí. 2 años, 7 meses y 23 días después.
+
+
+Python Málaga
+-------------
+
+.. Y quiero agradecer tanto a Python Málaga como a Codespace por cedernos este espacio, por la oportunidad de estar
+   aquí todos juntos de nuevo. Gracias.
 
 .. _sobre-mi:
 
+
 Sobre mí **Nekmo**
-==================
+------------------
 
 +-----------------------------------+
 |                                   |
@@ -36,643 +66,388 @@ Sobre mí **Nekmo**
 |                                   |
 +-----------------------------------+
 
-.. Soy Juan José Oyagüe, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
-   y usando Django ya desde su versión 1.1. Así que no os puedo engañar...
+.. Pero bueno, dejad de que me presente. Soy Juan José, más conocido en redes como Nekmo, y llevo programando en
+   Python más de media vida.
 
 
-**Django** + *Django Rest Framework*
-====================================
-
-.. ... Me gusta Django, y Django Rest Framework. Y espero conseguir haceros llegar un poco de mi
-   pasión por estos dos frameworks, y de los motivos por los que llevo usándolos tanto tiempo. Vale, pero
-   antes de llegar a mí Django Rest Framework, llego a mí...
-
-Django
-======
-
-.. image:: images/django-white-logo.svg
-   :width: 100%
-
-.. revealjs_section::
-    :data-background-color: #0c4b33
-
-.. Django. ¿Y qué es exactamente este framework?
-
-Qué es
-------
-
-.. revealjs_fragments::
-
-    * **Framework web**.
-    * **Desarrollo rápido** en **Python**.
-    * Miles de **módulos**.
-    * Muy **escalable**.
-    * Gran **soporte**.
-
-.. revealjs_section::
-    :data-background-color: #0c4b33
-
-.. Aquí no me puedo parar mucho, pero en resumen, Django es un framework web para el rápido desarrollo en Python, con
-   miles de módulos, muy estable y con gran soporte. Seguramente, el más conocido y usado en Python.
-
-
-Baterías incluidas
-------------------
-
-.. revealjs_section::
-    :data-background-color: #0c4b33
-
-.. image:: images/batteries-included.*
-   :width: 100%
-
-.. Y al igual que Python, tiene baterías incluidas. Esto significa, que tiene cosas para todo.
-
-Qué incluye
------------
-
-.. revealjs_section::
-    :data-background-color: #0c4b33
-
-
-.. revealjs_fragments::
-
-    * **ORM** para base de datos.
-    * Administración de **sesiones**.
-    * Control de **permisos**
-    * Gestión de **urls**.
-    * **Middleware**.
-    * **Caché**.
-    * envío de **correos**...
-    * Pero **no API Rest**.
-
-.. ¿Y qué incluye de serie? Pues tendríamos... (leer listado).
-
-Django Rest Framework
-=====================
-
-.. image:: images/drf_logo.*
-
-.. ¿Recordáis que hemos dicho que tiene módulos para todo? Pues Django Rest Framework es uno de esos módulos.
-   Se instala en prácticamente en 3 o 4 pasos, y listo para funcionar.
-
-Framework para desarrollar **APIs REST***
------------------------------------------
-
-``*`` **API REST:** Arquitectura de software que trabaja con los recursos mediante los operadores HTTP *(POST, GET,
-PUT, DELETE...)*.
-
-.. ¿Y cómo podríamos definir Django Rest Framework? Se trata de un framework para desarrollar APIs REST, una
-   arquitectura de software en que se trabaja con *recursos* usando los operadores HTTP, tales como POST, GET, PUT
-   o DELETE.
-
-Operadores HTTP
----------------
-
-Respectivamente: **Crear, obtener, actualizar y eliminar**.
-
-.. image:: images/http_operators.png
-
-.. Por ejemplo, aquí aquí el operador HTTP POST crea, GET obtiene por el id, PATCH actualiza y DELETE elimina. Django
-   Rest Framework facilitar crear APIs REST como esta. Pero espera... Hemos dicho que Django Rest Framework es un
-   framework... ¿Y Django también es un framework?
-
-Meta framework
---------------
-
-.. image:: images/meta.*
-
-.. revealjs_section::
-    :data-background-color: #000000
-
-.. Sí, Django Rest Framework es un framework dentro de otro framework web. Pero aún no saquéis las antorchas.
-
-
-Antorchas
----------
-
-.. image:: images/mob-torch.gif
-   :width: 150%
-
-.. revealjs_section::
-    :data-background-color: #000000
-    :data-transition: convex-in slide-out
-
-
-**Django Rest Framework** *complementa*
----------------------------------------
-
-.. Django Rest Framework aprovecha todo lo bueno de Django, y lo complementa. Si Django es un pastel
-
-Pastel 1
---------
-
-.. image:: images/guinda-sin.jpg
-
-.. revealjs_section::
-    :data-background-color: #badeba
-    :data-transition: slide-in fade-out
-
-.. Django Rest Framework es su guinda
-
-Pastel 2
---------
-
-.. image:: images/guinda.jpg
-
-.. revealjs_section::
-    :data-background-color: #badeba
-    :data-transition: fade
-
-.. ¿Y nadie quiere una guinda sin pastel, verdad?
-
-Ejemplo web
-===========
-
-.. revealjs_section::
-   :data-transition: concave
-
-
-.. image:: images/api-web-list.png
-
-.. Además, nos construye una API REST navegable muy vistosa que nos mostrará el JSON resaltado e indentado de
-   nuestros objetos.
-
-Formulario
+Python 2.5
 ----------
 
-.. revealjs_section::
-   :data-transition: concave-in slide-out
+.. Mi primera versión de Python fue la 2.5, allá por 2006. Han pasado ya muchos años, y con cada nueva versión no
+   dejan de traer novedades.
 
 
-.. image:: images/api-web-form.png
+¿Qué hay de nuevo en Python 3.11?
+=================================
+
+.. Ahora, ¿qué hay de nuevo en Python 3.11?
 
 
-.. No sólo eso, sino que nos construye formularios para crear nuevos objetos. Pero estas no son sus únicas
-   características.
-
-Características
-===============
-
-.. revealjs_fragments::
-
-    * **Interpretar** y **renderizar** a múltiples formatos.
-    * **Clases genéricas** para facilitar operaciones **CRUD**.
-    * Potentes **serializers** para trabajar **con o sin** el **ORM**.
-    * **Paginación**, **filtrado**, **búsqueda** y **ordenación** en listados.
-    * Compatible con los **validadores** y **sistema de permisos** de Django.
-    * ... entre otras opciones.
-
-.. (leer puntos). Pero esto no es lo único bueno de Django Rest Framework.
-
-Estructura
-==========
-
-.. image:: images/esquema-drf.png
-
-.. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web, sino porque a diferencia
-   de otros módulos que hacen lo mismo, entiende perfectamente la filosofía de Django, y ello se ve en su estructura.
-
-Serializers
-===========
-
-**¿Qué son?**
-
-.. Vale, empecemos por los serializers. ¿Y qué hacen los serializers?
-
-Los serializers, serializan
----------------------------
-
-*Nekmo, 2021.*
-
-.. Los serializers, serializan. Nekmo, 2021. Vale, ahora en serio.
-
-Interpretar la entrada
-----------------------
-
-.. revealjs_section::
-   :data-transition: fade-in zoom-out
-
-.. code-block:: json
-
-    {
-        "identifier": "bulbasaur",
-        "color": 5,
-        "gender_rate": 1,
-        "has_gender_differences": false
-    }
-
-.. Los serializers, son los responsables de convertir y validar la entrada de datos, vamos, lo que mete el usuario a
-   través de la API, en un objeto en Python, que normalmente servirá para crear o actualizar un objeto en la base de
-   datos. Para ello usaríamos el siguiente serializer.
-
-
-.. revealjs_break::
-    :data-transition: convex
-
-.. code-block:: python
-
-    # serializers.py
-    # --------------
-    class SpecieSerializer(serializers.HyperlinkedModelSerializer):
-
-        class Meta:
-            model = Specie
-            exclude = ()
-
-.. Al provenir de un modelo, Django Rest Framework es capaz de obtener los campos y sus tipos.
-
-.. revealjs_break::
-    :data-transition: convex
-
-.. code-block:: python
-
-    # models.py
-    # ---------
-    class Specie(models.Model):
-        identifier = models.CharField(_('Specie identifier'), max_length=50)
-        color = models.CharField(max_length=8, choices=COLORS)
-        gender_rate = models.SmallIntegerField()
-        has_gender_differences = models.BooleanField()
-
-.. Este sería el modelo usado y del que se obtienen los campos, aunque también es posible definirlos manualmente
-   en el serializer.
-
-.. revealjs_break::
-    :data-transition: convex
-
-.. code-block:: python
-
-    # serializers.py
-    # --------------
-    class SpecieSerializer(serializers.HyperlinkedModelSerializer):
-
-        identifier = serializers.CharField()
-        color = serializers.ChoiceField(choices=COLORS)
-        gender_rate = serializers.IntegerField()
-        has_gender_differences = serializers.BooleanField(default=False)
-
-        class Meta:
-            model = Specie
-            exclude = ()
-
-.. Aunque no es necesario definir los campos de esta forma, puede ser útil para cambiar algún tipo, sus
-   opciones, etc. También es necesario hacerlo de esta forma si el serializer no proviene de un modelo, y creamos
-   nuestro propio serializer.
-
-Devuelve la salida
-------------------
-
-.. revealjs_section::
-   :data-transition: zoom-in fade-out
-
-.. image:: images/api-web-detail.png
-
-.. También hacen lo mismo pero a la inversa: convierten el objeto a una salida compatible, un data, el cual
-   normalmente será un diccionario el cual el renderer (del que hablaremos luego) transformará en json, xml, o
-   lo que proceda.
-
-Viewsets
-========
-Lógica encargada de procesar las peticiones de la API para **trabajar con los objetos** para:
-
-.. revealjs_fragments::
-
-    * **Crearlos**
-    * **Listarlos**
-    * **Actualizarlos**
-    * **Obtenerlos**
-    * **Eliminarlos**...
-
-.. Los viewsets en cambio, son la lógica encargada de devolver tus objetos, a través de la API, (leer puntos):
-   crearlos, listarlos, etc.
-
-Ejemplo viewset
+Listado cambios
 ---------------
 
-.. code-block:: python
-
-    class SpecieViewSet(viewsets.ViewSet):
-        """A simple ViewSet for listing or retrieving species."""
-
-        def list(self, request):
-            queryset = Specie.objects.all()
-            serializer = SpecieSerializer(queryset, many=True)
-            return Response(serializer.data)
-
-        def retrieve(self, request, pk=None):
-            queryset = Specie.objects.all()
-            user = get_object_or_404(queryset, pk=pk)
-            serializer = SpecieSerializer(user)
-            return Response(serializer.data)
+* **PEP 654:** Exception Groups y except*.
+* **PEP 678:** Exceptions can be enriched with notes.
+* **PEP 680:** tomllib.
+* **PEP 678:** Enriquecer excepciones con notas.
+* **PEP 657:** Mejoras en las indicaciones de error en los tracebacks.
+* Opción ``-P`` en la línea de comandos y variable de entorno ``PYTHONSAFEPATH``.
+* **PEP 646:** Variadic Generics.
+* **PEP 655:** Marcar individualmente elementos de un TypedDict como requeridos o potencialmente indefinidos.
+* **PEP 673:** Tipo Self.
+* **PEP 675:** Tipo de cadena literal arbitraria
+* **PEP 681:** Data Class Transforms
+* Módulos obsoletos (PEP 594),  Py_UNICODE API eliminada (PEP 624) y macros convertidas a funciones estáticas en línea
+  (PEP 670).
 
 
-.. Por ejemplo, este viewset ``SpecieViewSet`` tiene las acciones listar y obtener un objeto.
+.. Pues este sería el listado de todos los cambios, los cuales se pueden consultar en la web oficial de Python.
+
+Muchas gracias
+--------------
+
+.. Y hasta aquí la charla. Muchas gracias a todos por venir. (PAUSA) Ahora en serio, vamos a ir viendo cada uno de
+   estos cambios, aunque me tendré que detener bastante en el primero de ellos porque es el más importante y más
+   interesante.
+
+PEP 654: Exception Groups y except*
+===================================
+
+.. La primera de estas novedades son los exception groups y el nuevo except* con asterisco, con PEP 654.
+
 
 .. revealjs_break::
-    :data-transition: convex-in slide-out
+    :notitle:
+
 
 .. code-block:: python
 
-    class SpecieViewSet(viewsets.ModelViewSet):
-        """
-        This viewset automatically provides `list`, `create`, `retrieve`,
-        `update` and `destroy` actions.
-
-        Additionally we also provide an extra `photo` action.
-        """
-        queryset = Specie.objects.select_related('growth_rate', 'shape', 'habitat')
-        serializer_class = SimpleSpecieSerializer
-        filter_class = SpecieFilter
-        ordering_fields = ('identifier', 'generation', 'evolves_from_specie', 'color')
-        search_fields = ('identifier', 'generation__identifier', 'shape__identifier')
-
-        @action(detail=True)
-        def photo(self, *args, **kwargs):
-            obj = self.get_object()
-            photo_url = PHOTO_FORMAT_URL.format(**vars(obj))
-            return Response(headers={'Location': photo_url},
-                            status=status.HTTP_302_FOUND)
-
-.. Y como esto es algo muy habitual y repetitivo, heredando de ModelViewSet automáticamente tendrá estas acciones y
-   además las de crear, actualizar y borrar sin necesidad de definirlas. En este ejemplo además ponemos una acción
-   adicional. Pero vamos a ver más en detalle algunas de las opciones de este viewset...
+    class NameError(Exception):
+        pass
 
 
-Filtrado y paginación
----------------------
-
-.. code-block:: python
-
-    filter_class = SpecieFilter
-    ordering_fields = ('identifier', 'generation', 'evolves_from_specie', 'color')
-    search_fields = ('identifier', 'generation__identifier', 'shape__identifier')
+    def validate_name(value: str) -> None:
+        if not value.istitle():
+            raise NameError("El nombre debe empezar por mayúscula.")
 
 
-.. image:: images/filters_example.png
-    :width: 60%
+    form = {"name": "nekmo"}
+    try:
+        validate_name(form["name"])
+    except NameError as err:
+        print(err)  # Salta el error
 
-.. Estas opciones permiten respectivamente, definir los filtros, la ordenación y la búsqueda, las cuales se mostrarán
-   después en el modo web a modo de ayuda. En estos, es posible usar doble barra baja para acceder a modelos
-   relacionados. Pero veamos qué hay en la clase SpecieFilter...
+.. Aquí tenemos una excepción tradicional de Python, a lo cual lo normal es lanzar una única excepción y capturarla.
+   En la función validamos la entrada, y si no valida se lanza una excepción, la cual se captura en el except y
+   se muestra por pantalla.
 
 .. revealjs_break::
-    :data-transition: convex-in slide-out
+    :notitle:
 
-.. code-block:: python
 
-    from django_filters.rest_framework import FilterSet
+.. image:: images/validacion-formulario.png
 
-    class SpecieFilter(FilterSet):
-
-        class Meta:
-            model = Specie
-            fields = {
-                'identifier': ['exact', 'icontains'],
-                'generation': ['exact', 'in'],
-            }
-
-.. Esta clase en realidad, utiliza una biblioteca externa llamada django-filter. En este ejemplo hay 2 campos por los
-   que se filtra, identifier y generation, y ambos tienen lookups. Los lookups son opciones que se pueden usar en la
-   query SQL. Por ejempo icontains permite filtrar por un texto que es contenido por el campo ignorando las mayúsculas.
-
-Parsers y renderers
--------------------
-
-También se encarga de definir:
-
-* Los **parsers** *(leen e convierten la petición)* para luego interpretarse y validarse con los **serializers**.
-* Los **renderers** *(devuelven al usuario la respuesta)* a partir del data del **serializer**.
-
-Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
-
-.. Además, el viewset es el encargado de definir los llamados *parsers* que son las formas de leer la
-   información del usuario para aceptar json, xml, entre otros, y los *renders*, para devolver los datos según el que
-   desee el usuario.
+.. Pero en nuestro caso tenemos un formulario. Un formulario en el que nuestro usuario comete varios errores, y
+   queremos mostrarle al usuario todos los errores de golpe, no excepción por excepción. Necesitamos agruparlos.
 
 .. revealjs_break::
-    :data-transition: convex-in slide-out
-
-.. image:: images/xml_example.png
-
-.. Por ejemplo, en vez de tener como salida del renderer JSON como vimos antes, podemos solicitar que se nos devuelva
-   XML.
-
-Opciones por defecto
---------------------
+    :notitle:
 
 .. code-block:: python
 
-    # settings.py
-    # -----------
-    REST_FRAMEWORK = {
-        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': 20,
-        'DEFAULT_AUTHENTICATION_CLASSES': [
-            'rest_framework.authentication.TokenAuthentication',
-            'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        ]
-        'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAuthenticated',
-        ]
-        'DEFAULT_RENDERER_CLASSES': (
-            'rest_framework_xml.renderers.XMLRenderer',
-        ),
-        'DEFAULT_FILTER_BACKENDS': (
-            'django_filters.rest_framework.DjangoFilterBackend',
-        ),
-    }
-
-.. Algunas de las opciones de los viewsets pueden definirse de forma global por defecto para todo el proyecto, como el
-   caso de los parsers y renderers, que no se definían en el viewset. Las opciones por defecto se definen en el
-   settings de Django. En este ejemplo, definimos la paginación y su tamaño, las clases para la autenticación, entre
-   las que se encuentra el de token, los permisos necesarios, los renderers como decíamos, o las clases de filtrado.
+    from typing import Iterable, Tuple, Dict, Callable
 
 
-Otras opciones viewsets
------------------------
+    class NumberError(Exception):
+        pass
 
-.. revealjs_fragments::
 
-    * **Caché respuesta**.
-    * **Documentación**.
-    * **Limitar las peticiones** (Throttling).
-    * ... y más.
+    def validate_age(value: str) -> None:
+        if not value.isdigit():
+            raise NumberError("La edad debe ser un valor numérico.")
 
-.. Pero los viewsets nos permiten más cosas, caché, documentación, limitar las peticiones y más. Vale, y hasta
-   aquí la mitad de la presentación.
 
-Vamos terminando
-================
+    form = {"name": "nekmo", "age": "diez"}
+    form_validations = [("name", validate_name), ("age", validate_age)]
+    exceptions = []
+
+    for form_key, input_validation in input_validations:
+        try:
+            input_validation(form[form_key])
+        except Exception as err:
+            exceptions.append(value)
+    if exceptions:
+        raise ExceptionGroup("errors message", exceptions)
+
+
+.. En este segundo ejemplo iteramos sobre todos los valores del formulario, aplicamos su validación y si hay un
+   error lo añadimos al listado de excepciones. Si hay errores lanzamos el ExceptionGroup con sus exceptions.
+
+.. revealjs_break::
+    :notitle:
+
+.. image:: images/json.png
+
+
+.. Esto como os imaginaréis es muy útil en casos como un JSON, o cuando nos vienen varios datos de entrada a validar,
+   como en el ejemplo del formulario. Pero claro, os estaréis preguntando. ¿Para qué esto si sólo es crear un listado
+   de excepciones con un nuevo tipo de excepción?
+
+except*
+-------
+
+.. La verdadera novedad  comienza usando el nuevo except con asterisco.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    try:
+        read_inputs()
+    except* NameError as eg:
+        # Si hay errores NameError esto se llama
+        print(f"Errores en el nombre: {eg.exceptions}")
+    except* NumberError as eg:
+        # Y si hay errores NumberError, esto también
+        print(f"Errores numéricos: {eg.exceptions}")
+
+.. Podemos utilizarlo para capturar múltiples exceptiones agrupadas diferenciadas por tipo. Y lo que es mejor, a
+   diferencia de lo habital que es que el except no continúe ante la primera coincidencia, con el except con asterísco
+   sí que sigue. (LEER EJEMPLO).
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    raise ExceptionGroup("nested",
+        [
+             ValueError(654),
+             ExceptionGroup("imports",
+                 [
+                     ImportError("no_such_module"),
+                     ModuleNotFoundError("another_module"),
+                 ]
+             ),
+             TypeError("int"),
+         ]
+
+.. Por si fuese poco, también podemos meter excepciones dentro de otras. Esto es especialmente útil en casos como un
+   JSON, en que tenemos múltiples niveles. También es útil en ejecución asíncrona, en que varias funciones lanzan a
+   su vez varias excepciones. Justamente algo similar al ExceptionGroup lo tenía Trio con el MultiError,
+   aunque ahora lo tenemos de serie.
+
+
+¡Continuamos!
+=============
 
 .. revealjs_section::
     :data-background-color: #000000
     :data-background-image: _static/applause.gif
 
+.. No os preocupéis, esto era lo gordo. Lo que viene son cambios más pequeños, pero muchos muy interesantes.
 
-.. Lo que queda por suerte ya es más fácil. Pasemos a los routers.
+PEP 678: Enriquecer excepciones con notas
+=========================================
 
-Routers
-=======
+.. Y seguimos con excepciones. El nuevo método PEP 678 permite añadir notas, aclaraciones, a las excepciones que se
+   lanzan.
 
-.. code-block:: python
-
-    # routers.py
-    # ----------
-
-    router = DefaultRouter()
-    router.register(r'pokemon', viewsets.PokemonViewSet)
-    router.register(r'species', viewsets.SpecieViewSet)
-    router.register(r'growth_rates', viewsets.GrowthRateViewSet)
-    router.register(r'shapes', viewsets.ShapeViewSet)
-    router.register(r'habitats', viewsets.HabitatViewSet)
-    router.register(r'generations', viewsets.GenerationViewSet)
-    router.register(r'regions', viewsets.RegionViewSet)
-
-
-.. Los *routers* son la parte más sencilla de explicar: se encargan de registrar los viewsets y ponerles un nombre,
-   para que sea posible acceder a ellos por una url. ¿No es genial acabar con la parte más fácil?
-
-Urls
-----
-
-.. revealjs_section::
-    :data-transition: convex-in slide-out
+.. revealjs_break::
+    :notitle:
 
 .. code-block:: python
 
-    # urls.py
-    # -------
+    try:
+         raise TypeError('bad type')
+    except Exception as e:
+         e.add_note('¡Ah, ah, ah! ¡No has dicho la palabra mágica!')
+         raise
 
-    urlpatterns = [
-        url(r'^', include(router.urls)),
-        path('docs/', include_docs_urls(title='Pokédex'))
-    ]
+.. En este ejemplo se añade produce una excepción, se captura, se le añade una nota usando el nuevo método add_note,
+   disponible en Exception, y se vuelve a lanzar ya con la nota.
 
-
-.. Después sólo queda registrarlos en el ``urls.py`` de Django, igual que con cualquier otra app. Así de fácil.
-
-En resumen
-==========
-
-.. revealjs_fragments::
-
-    * **Serializers**: representan e interpretan los datos.
-    * **Viewsets**: gestionan las peticiones y devuelven la respuesta.
-    * **Routers**: corresponde a las urls que se utilizarán.
-
-.. Así pues, en resumen tenemos: serializers que representan e interpretan los datos, viewsets que gestionan las
-   peticiones, y routers que corresponde a las urls que se utilizarán.
-
-¿Y no podríamos reducirlo?
-==========================
-
-.. image:: images/esquema-drf.png
-    :width: 100%
-
-.. Pero claro, alguno pensará... ¡Esas son muchas clases y muchas cosas! ¿No podría estar todo junto? A mí también me
-   lo pareció al principio. Por ejemplo, ¿por qué no juntar los serializers y los viewsets?
-
-Heredar serializers
-===================
+.. revealjs_break::
+    :notitle:
 
 .. code-block:: python
 
-    class SimpleSpecieSerializer(serializers.HyperlinkedModelSerializer):
+    Traceback (most recent call last):
+      File "<stdin>", line 2, in <module>
+    TypeError: bad type
+    Add some information
 
-        class Meta:
-            model = Specie
-            exclude = ('growth_rate', 'shape', 'habitat', 'generation')
+.. Y cuando se produce la excepción, la nota es mostrada en una segunda línea. Así se simple. Genial para aclaraciones y
+   otras anotaciones.
 
-
-    class SpecieSerializer(SimpleSpecieSerializer):
-
-        class Meta(SimpleSpecieSerializer.Meta):
-            exclude = ()
-
-
-.. El motivo por el que no se puede , es que puedes heredar de tu serializer para crear uno en mas detalle.
-
-Condicionar serializer
-----------------------
-
-.. revealjs_section::
-    :data-transition: convex
+.. revealjs_break::
+    :notitle:
 
 .. code-block:: python
 
-    class SpecieViewSet(viewsets.ModelViewSet):
-        """
-        This viewset automatically provides `list`, `create`, `retrieve`,
-        `update` and `destroy` actions.
-        """
-        queryset = Specie.objects.select_related('growth_rate', 'shape')
-        serializer_class = SpecieSerializer
+    + Exception Group Traceback (most recent call last):
+    |   File "test.py", line 4, in test
+    |     def test(x):
+    |
+    |   File "hypothesis/core.py", line 1202, in wrapped_test
+    |     raise the_error_hypothesis_found
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    | ExceptionGroup: Hypothesis found 2 distinct failures.
+    +-+---------------- 1 ----------------
+        | Traceback (most recent call last):
+        |   File "test.py", line 6, in test
+        |     assert x > 0
+        |     ^^^^^^^^^^^^
+        | AssertionError: assert -1 > 0
+        |
+        | Falsifying example: test(
+        |     x=-1,
+        | )
+        +---------------- 2 ----------------
+        | Traceback (most recent call last):
+        |   File "test.py", line 5, in test
+        |     assert x < 0
+        |     ^^^^^^^^^^^^
+        | AssertionError: assert 0 < 0
+        |
+        | Falsifying example: test(
+        |     x=0,
+        | )
+        +------------------------------------
 
-        def get_serializer_class(self):
-            if self.action == 'retrieve':
-                return DetailPokemonSerializer
-            return super().get_serializer_class()
+
+.. Y por supuesto, esto también puede utilizarse con los ExceptionGroup - Ya veis lo que me gustan - de forma que
+   añadimos información adicional sobre la parte del exception group en que ha sucedido. Y de paso, ¡ahora podéis
+   conseguir que vuestros tracebacks den miedo! Como este de aquí.
 
 
-.. Y devolver un serializer u otro dependiendo de si lo pones en un listado o pides sólo uno, por ejemplo. Así
-   ahorras datos. ¿No es genial?
+PEP 657: Mejoras en las indicaciones de error en los tracebacks
+===============================================================
 
-Anidar serializers
-------------------
+.. Y seguimos con tracebacks de error. Vamos a ver las mejoras que se han hecho en los mensaje de traceback.
 
-.. revealjs_section::
-    :data-transition: convex-in slide-out
+
+.. revealjs_break::
+    :notitle:
+
 
 .. code-block:: python
 
-    class GrowthRateSerializer(serializers.HyperlinkedModelSerializer):
-        class Meta:
-            model = GrowthRate
-            exclude = ()
+    Traceback (most recent call last):
+      File "distance.py", line 11, in <module>
+        print(manhattan_distance(p1, p2))
+      File "distance.py", line 6, in manhattan_distance
+        return abs(point_1.x - point_2.x) + abs(point_1.y - point_2.y)
+    AttributeError: 'NoneType' object has no attribute 'x'
+
+.. Hasta ahora en Python, como recordaréis lo habitual cuando hay varias variables en una sola línea y una de ellas es
+   None, la única forma de encontrar la que provocaba el error era ponerse a depurar, porque el error no da bastante
+   información.
+
+.. code-block:: python
+
+    Traceback (most recent call last):
+      File "distance.py", line 11, in <module>
+        print(manhattan_distance(p1, p2))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "distance.py", line 6, in manhattan_distance
+        return abs(point_1.x - point_2.x) + abs(point_1.y - point_2.y)
+                               ^^^^^^^^^
+    AttributeError: 'NoneType' object has no attribute 'x'
+
+.. Pero ahora con Python 3.11, ¡ya no hace falta depurar! Porque ahora tienes flechitas que te indican lo que es un
+   None. Y no hay nada más fácil que seguir flechitas que indican lo que tienes que arreglar, ¿no?
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    Traceback (most recent call last):
+      File "query.py", line 37, in <module>
+        magic_arithmetic('foo')
+      File "query.py", line 18, in magic_arithmetic
+        return add_counts(x) / 25
+               ^^^^^^^^^^^^^
+      File "query.py", line 24, in add_counts
+        return 25 + query_user(user1) + query_user(user2)
+                    ^^^^^^^^^^^^^^^^^
+      File "query.py", line 32, in query_user
+        return 1 + query_count(db, response['a']['b']['c']['user'], retry=True)
+                                   ~~~~~~~~~~~~~~~~~~^^^^^
+    TypeError: 'NoneType' object is not subscriptable
+
+.. Y el caso en que esto me ha parecido más útil es accediendo a diccionarios. Seguro que os ha pasado alguna vez
+   acceder a un diccionario dentro de otro dentro de otro, y que a partir de cierto punto sea un None y no saber en
+   qué nivel ocurre. Pues ahora se te indica. Con flechitas. ¿Qué más podemos pedir?
+
+PEP 680: tomllib
+================
+
+.. Y ahora, algo completamente diferente. Tenemos un nuevo módulo en la biblioteca estándar, Tomlib. ¿Pero qué significa
+   TOML?
+
+.. revealjs_break::
+    :notitle:
+
+Tom's Obvious, Minimal Language
+-------------------------------
+
+.. Pues obviamente, Tom's Obvious Minimal Language. ¿Y por qué Tom?
+
+.. revealjs_break::
+    :notitle:
+
+.. image:: images/tom.png
+
+.. Algunos ya os lo habréis imaginado, pero es como se llama el creador de este lenguaje. Un poco egocéntrico pensaréis.
+   Pero si le veis tan feliz es por una buena razón: es el fundador de Github, ahora millonario.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: toml
+
+    # This is a TOML document
+
+    title = "TOML Example"
+
+    [owner]
+    name = "Tom Preston-Werner"
+    dob = 1979-05-27T07:32:00-08:00
+
+    [database]
+    enabled = true
+    ports = [ 8000, 8001, 8002 ]
+    data = [ ["delta", "phi"], [3.14] ]
+    temp_targets = { cpu = 79.5, case = 72.0 }
+
+    [servers]
+
+    [servers.alpha]
+    ip = "10.0.0.1"
+    role = "frontend"
+
+.. Pero vayamos a lo que nos importa. Toml es un formato de archivo de configuración sencillo de entender y de editar
+   por un humano, a diferencia de JSON. Solventa algunos de los problemas de Yaml como su falta de consistencia y
+   ofrece más características que los ficheros ini en los que se basa.
+
+.. revealjs_break::
+    :notitle:
+
+.. code-block:: python
+
+    import tomllib
 
 
-    class SpecieSerializer(SimpleSpecieSerializer):
-        growth_rate = GrowthRateSerializer()  # nested serializer
-
-        class Meta(SimpleSpecieSerializer.Meta):
-            exclude = ()
+    with open("fichero.toml") as f:
+        tomllib.load(f)
 
 
-.. Y por si fuera poco, puedes reutilizar tus serializers para usarlos en otros serializers, anidados. Esto es
-   lo que se llama *nested serializers*
+.. Leer un fichero toml es muy sencillo, muy similar a como se hace con el módulo de json. No obstante, curiosamente
+   no disponemos de un método de hacer un dump, por lo que no podemos escribir.
 
-Otros módulos
-=============
-
-* `djoser <https://github.com/sunscrapers/djoser>`_ (Registro y autenticación usuarios).
-* `django-oauth-toolkit <https://github.com/jazzband/django-oauth-toolkit>`_ (OAuth2).
-* `drf-yasg <https://github.com/axnsan12/drf-yasg/>`_ (Swagger).
-* `drf-nested-routers <https://github.com/alanjds/drf-nested-routers>`_ (Routers anidados)
-* `rest-pandas <https://github.com/wq/django-rest-pandas>`_ (Excel, CSV y SVG renderers).
-* `drf-extensions <https://github.com/chibisov/drf-extensions>`_ (extensiones varias).
-
-.. La gente de Django Rest Framework ha pensado en muchas de estas cosas, pero por si fuera poco, cuentas con cientos
-   de módulos de terceros, como por ejemplo (listar ejemplos).
-
-Demo
-====
-
-.. revealjs_section::
-    :data-background-color: #000000
-    :data-background-image: _static/demo.gif
-
-
-.. Y ya pasaríamos a verlo en acción. Y vamos a ver un ejemplo con, por ejemplo, ...
-
-Pikachu
--------
-
-.. revealjs_section::
-    :data-background-color: #000000
-    :data-background-image: _static/pikachu.jpg
-
-
-.. Pokémons. Porque, ¿por qué no?
 
 ¡Muchas gracias!
 ================
@@ -707,11 +482,6 @@ Contactar
 * **Telegram:** `@nekmo <https://t.me/nekmo>`_
 * **Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
 
-|
-|
-
-.. image:: images/hispasec-logo.png
-    :width: 40%
 
 .. Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Y también mi email. Y Twitter.
    Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos!
