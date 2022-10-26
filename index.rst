@@ -8,11 +8,12 @@
 
 .. _intro:
 
-=================================
-¿Qué hay de nuevo en Python 3.11?
-=================================
+=====================================
+¿Qué hay de nuevo en **Python 3.11**?
+=====================================
 
-.. image:: images/drf_logo.*
+.. image:: images/python-logo.*
+  :width: 200
 
 .. Hola a todos.
 
@@ -38,15 +39,18 @@ Estamos de vuelta
     >>> import humanize
     >>> delta = datetime.datetime(2022, 10, 27) - datetime.datetime(2020, 3, 4)
     >>> humanize.i18n.activate("es_ES")
-    >>> print(humanize.precisedelta(delta))
-    2 años, 7 meses y 23 días
+    >>> print(repr(humanize.precisedelta(delta)))
+    "2 años, 7 meses y 23 días"
 
 
 .. Pero ya estamos aquí. 2 años, 7 meses y 23 días después.
 
 
-Python Málaga
--------------
+Python **Málaga**
+-----------------
+
+.. image:: images/python-malaga-logo.*
+
 
 .. Y quiero agradecer tanto a Python Málaga como a Codespace por cedernos este espacio, por la oportunidad de estar
    aquí todos juntos de nuevo. Gracias.
@@ -57,14 +61,14 @@ Python Málaga
 Sobre mí **Nekmo**
 ------------------
 
-+-----------------------------------+
-|                                   |
-| .. image:: images/cara.svg        |
-|   :width: 200px                   |
-|                                   |
-| *Django desde versión 1.1 (2009)* |
-|                                   |
-+-----------------------------------+
++------------------------------------+
+|                                    |
+| .. image:: images/cara.svg         |
+|   :width: 200px                    |
+|                                    |
+| *Programando en Python desde 2006* |
+|                                    |
++------------------------------------+
 
 .. Pero bueno, dejad de que me presente. Soy Juan José, más conocido en redes como Nekmo, y llevo programando en
    Python más de media vida.
@@ -73,7 +77,7 @@ Sobre mí **Nekmo**
 Python 2.5
 ----------
 
-.. Mi primera versión de Python fue la 2.5, allá por 2006. Han pasado ya muchos años, y con cada nueva versión no
+.. Mi primera versión de Python fue la 2.5. Han pasado ya muchos años, y con cada nueva versión no
    dejan de traer novedades.
 
 
@@ -87,9 +91,8 @@ Listado cambios
 ---------------
 
 * **PEP 654:** Exception Groups y except*.
-* **PEP 678:** Exceptions can be enriched with notes.
-* **PEP 680:** tomllib.
 * **PEP 678:** Enriquecer excepciones con notas.
+* **PEP 680:** tomllib.
 * **PEP 657:** Mejoras en las indicaciones de error en los tracebacks.
 * Opción ``-P`` en la línea de comandos y variable de entorno ``PYTHONSAFEPATH``.
 * **PEP 646:** Variadic Generics.
@@ -102,9 +105,11 @@ Listado cambios
 
 
 .. Pues este sería el listado de todos los cambios, los cuales se pueden consultar en la web oficial de Python.
+   El más importante son los exception groups para agrupar excepciones, mejoras en los tracebacks, el nuevo módulo
+   tomllib y novedades en el tipado.
 
-Muchas gracias
---------------
+Gracias
+-------
 
 .. Y hasta aquí la charla. Muchas gracias a todos por venir. (PAUSA) Ahora en serio, vamos a ir viendo cada uno de
    estos cambios, aunque me tendré que detener bastante en el primero de ellos porque es el más importante y más
@@ -344,6 +349,10 @@ PEP 657: Mejoras en las indicaciones de error en los tracebacks
 .. Hasta ahora en Python, como recordaréis lo habitual cuando hay varias variables en una sola línea y una de ellas es
    None, la única forma de encontrar la que provocaba el error era ponerse a depurar, porque el error no da bastante
    información.
+
+.. revealjs_break::
+    :notitle:
+
 
 .. code-block:: python
 
@@ -718,18 +727,65 @@ PEP 681: Data Class Transforms
    dataclass_transform pueden cambiarse las opciones por defecto hacer la transformación. En conclusión, este tipado es
    útil si se está creando un modelo de clases similares a los dataclass.
 
+¿Qué otras novedades hay?
+=========================
+
+* Nuevo argumento ``-P`` en la línea de comandos y variable de entorno ``PYTHONSAFEPATH`` para
+  **evitar ejecutar código inseguro**.
+* **PEP 594**: Eliminar módulos muertos de la librería estándar (deprecated, a eliminar en 3.13).
+* **PEP 624**: Eliminadas las APIs de codificación de Py_UNICODE.
+* **PEP 670**: Convertir macros a funciones en la API en C de Python.
+* **¡Y es más rápido!** (10-60% respecto Python 3.10).
+
+
+.. ¿Y qué otras novedades hay? Tenemos... (leer puntos).
+
+Más información
+===============
+
+https://docs.python.org/3.11/whatsnew/3.11.html
+
+.. En la web oficial de Python podéis encontrar el detalle sobre todas estas novedades. Podéis o bien copiar esta URL,
+   o buscarlo en Google y os saldrá de lo primero.
+
+¿Cómo puedo conseguirlo?
+========================
+**¡¡Ya disponible!!**
+
+.. ¿Y cómo puedes conseguirlo? Pues bien, ¡ya está disponible! Python 3.11 salió literalmente hace dos días. Podéis
+   bajarlo desde la web de Python, desde vuestra distribución si ya lo tuviese o compilándolo desde los fuentes.
+
+¿Desde los fuentes?
+-------------------
+
+https://www.build-python-from-source.com/
+
+.. Si queréis compilarlo desde los fuentes en esta web disponéis de una ayuda sobre cómo hacerlo. No hace falta tener
+   grandes conocimientos técnicos.
+
+Python te necesita
+------------------
+
+.. revealjs_section::
+    :data-background-color: #ffffff
+    :data-background-size: contain
+    :data-background-image: _static/sam.png
+
+.. Y recordad, que podéis ir probando las nuevas versiones de Python antes de su fecha de lanzamiento oficial. Tras la
+   primera beta no suele haber importantes cambios y probándolas y dándoles soporte permitís encontrar fallos en el
+   intérprete antes de su día de salida. Os animo encarecidamente a hacerlo.
 
 ¡Muchas gracias!
 ================
 
 **Referencias**
 
-* `Django Tutorial <https://docs.djangoproject.com/en/3.1/intro/tutorial01/>`_.
-* `Django Rest Framework Tutorial <https://www.django-rest-framework.org/tutorial/quickstart/>`_.
-* `Awesome Django Rest Framework <https://github.com/nioperas06/awesome-django-rest-framework>`_.
+* `Qué hay de nuevo en Python 3.11 (doc oficial) <https://docs.python.org/3.11/whatsnew/3.11.html>`_.
+* `Preview exception groups (Real Python) <https://realpython.com/python311-exception-groups/>`_.
+* `Python variadic generics (Anthony Explains) <https://www.youtube.com/watch?v=hAj3nGzeSiQ>`_.
 
-.. Y hasta aquí la presentación. Espero que no se haya alargado de más. Tenéis enlaces a Django, Django Rest
-   Framework y un listado de módulos geniales para este último.
+.. Y hasta aquí la presentación. Os agradezco a todos por venir, y aquí os dejo algunas referencias utilizadas en
+   esta presentación.
 
 ¿Y la presentación?
 -------------------
@@ -737,11 +793,18 @@ PEP 681: Data Class Transforms
 .. revealjs_section::
     :data-transition: zoom
 
-Vuelve a verla, prueba la demo y mira el código fuente en:
-
-`github:Nekmo/django-rest-framework-presentacion <https://github.com/Nekmo/django-rest-framework-presentacion>`_
+`github:Nekmo/python311-presentacion <https://github.com/Nekmo/python311-presentacion>`_
 
 .. Además de a la presentación, por si queréis volver a verla.
+
+.. revealjs_break::
+    :data-background-color: #ffffff
+    :data-background-size: contain
+    :data-background-image: _static/qr.png
+    :notitle:
+
+
+.. Además aquí la tenéis en forma de QR por si os es más cómodo, para no tener ni que escribir.
 
 Contactar
 ---------
@@ -753,5 +816,5 @@ Contactar
 * **Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
 
 
-.. Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Y también mi email. Y Twitter.
-   Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos!
+.. Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Además de mi email. Y Twitter.
+   Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos! ¿Alguna pregunta?

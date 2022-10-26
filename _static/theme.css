@@ -23,6 +23,7 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 */
 @import url(https://fonts.googleapis.com/css?family=Lato:300,700);
 @import url(https://fonts.googleapis.com/css?family=Lora:700);
+@import url(https://fonts.googleapis.com/css?family=Creepster);
 @import url(https://fonts.googleapis.com/css2?family=Allura&display=swap);
 .hljs {
   display: block;
@@ -84,6 +85,12 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .hljs-selector-id {
   font-weight: bold; }
 
+@font-face {
+  font-family: 'Flux Regular';
+  font-style: normal;
+  font-weight: 300;
+  src: url("Flux Regular.otf") format("opentype"); }
+
 section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
   color: #141414; }
 
@@ -94,7 +101,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .line {
   content: '';
   position: fixed;
-  background: #A30000;
+  background: #2b5b84;
   z-index: 105; }
   .line.top {
     left: 0;
@@ -160,12 +167,12 @@ body {
 
 ::selection {
   color: #fff;
-  background: #ff2424;
+  background: #629bcc;
   text-shadow: none; }
 
 ::-moz-selection {
   color: #fff;
-  background: #ff2424;
+  background: #629bcc;
   text-shadow: none; }
 
 .reveal .slides > section,
@@ -345,20 +352,20 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #A30000;
+  color: #2b5b84;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #f00000;
+  color: #3e83be;
   text-shadow: none;
   border: none; }
 
 .reveal .roll span:after {
   color: #fff;
-  background: #570000; }
+  background: #18334a; }
 
 /*********************************************
  * IMAGES
@@ -380,26 +387,29 @@ body {
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #A30000;
+  border-color: #2b5b84;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
 .reveal .controls {
-  color: #A30000; }
+  color: #2b5b84; }
 
 /*********************************************
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
-  color: #A30000; }
+  color: #2b5b84; }
 
 .reveal .progress span {
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+.reveal *, .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-family: 'M PLUS 1p', sans-serif; }
 
 .reveal pre code span {
   font-family: monospace;
@@ -416,7 +426,7 @@ body {
 
 .reveal .progress {
   z-index: 1000;
-  color: #240000; }
+  color: #0c1924; }
 
 ul li {
   line-height: 2em; }
@@ -439,12 +449,28 @@ ul li {
   padding: 15px; }
 
 #intro h1 {
-  font-size: 2em; }
+  font-size: 2.5em; }
 
 #intro strong {
-  display: none; }
+  color: #2b5b84;
+  font-family: "Flux Regular";
+  text-transform: none;
+  font-size: 1.5em; }
 
-#sobre-mi h2 {
+#id1 {
+  font-size: 2em; }
+
+#marzo-2020 h3 {
+  font-family: "Creepster";
+  font-size: 5em;
+  color: #a51d1d; }
+
+#python-malaga h3 {
+  color: #50066f; }
+  #python-malaga h3 strong {
+    color: #005033; }
+
+#sobre-mi h3 {
   width: 40%;
   font-size: 2.5em;
   display: inline-block;
@@ -452,9 +478,9 @@ ul li {
   margin-top: 100px;
   text-align: right;
   line-height: 0.5em; }
-  #sobre-mi h2 strong {
+  #sobre-mi h3 strong {
     font-size: 0.3em;
-    color: #A30000; }
+    color: #2b5b84; }
 
 #sobre-mi table {
   width: 40%;
@@ -489,12 +515,6 @@ ul li {
 #ejemplo-web img, #formulario img, #devuelve-la-salida img, #baterias-incluidas img {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
-#django h1, #django h2, #django h3, #django-rest-framework h1, #django-rest-framework h2, #django-rest-framework h3, #antorchas h1, #antorchas h2, #antorchas h3, #pastel-1 h1, #pastel-1 h2, #pastel-1 h3, #pastel-2 h1, #pastel-2 h2, #pastel-2 h3, #estructura h1, #estructura h2, #estructura h3, #pikachu h1, #pikachu h2, #pikachu h3, #operadores-http h1, #operadores-http h2, #operadores-http h3 {
-  display: none; }
-
-#django img, #django-rest-framework img, #antorchas img, #pastel-1 img, #pastel-2 img, #estructura img, #pikachu img, #operadores-http img {
-  background: none; }
-
 #que-es {
   font-size: 1.5em; }
 
@@ -512,10 +532,10 @@ ul li {
 
 #framework-para-desarrollar-apis-rest strong, #django-rest-framework-complementa strong, #viewsets strong, #parsers-y-renderers strong,
 #otras-opciones-viewsets strong, #en-resumen strong, #caracteristicas strong {
-  color: #A30000; }
+  color: #2b5b84; }
 
 #serializers strong {
-  color: #A30000;
+  color: #2b5b84;
   font-size: 2em; }
 
 #los-serializers-serializan h3 {
@@ -527,13 +547,22 @@ ul li {
 #filtrado-y-paginacion h3 {
   font-size: 2em; }
 
-#continuamos h2, #continuamos h3, #mas-seguridad h2, #mas-seguridad h3 {
+#continuamos h2, #continuamos h3, #mas-seguridad h2, #mas-seguridad h3, #python-te-necesita h2, #python-te-necesita h3 {
   font-weight: bold;
   font-size: 3.6em;
   text-shadow: #000000 1px 0 10px; }
 
-#vamos-terminando {
-  margin-top: 180px; }
+#python-te-necesita {
+  top: auto !important;
+  bottom: 0; }
+  #python-te-necesita h3 {
+    font-weight: bold;
+    font-size: 3em;
+    color: #ffffff;
+    text-shadow: #ba4d53 3px 0 10px; }
+
+#que-otras-novedades-hay ul li p {
+  margin: 2px; }
 
 #y-no-podriamos-reducirlo, #ejemplo-web, #formulario {
   font-size: 0.6em; }
