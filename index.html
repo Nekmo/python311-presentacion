@@ -1,0 +1,733 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <title>¿Qué hay de nuevo en Python 3.11?</title>
+    <link rel="stylesheet" type="text/css" href="_static/revealjs4/dist/reveal.css" />
+    <link rel="stylesheet" href="_static/revealjs4/dist/theme/.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/theme.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&amp;display=swap" type="text/css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <script src="_static/main.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="¿Qué hay de nuevo en Python 3.11?" href="README.html" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    
+    <style>
+      .reveal *, .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        font-family: 'M PLUS 1p', sans-serif;
+      }
+    </style>
+    
+
+  </head><body>
+    <div class="reveal">
+        <div class="slides" role="main">
+            <div class="toctree-wrapper compound">
+</div>
+<section data-transition="zoom" id="intro">
+<h1>¿Qué hay de nuevo en <strong>Python 3.11</strong>?</h1>
+<a class="reference internal image-reference" href="_images/python-logo.png"><img alt="_images/python-logo.png" src="_images/python-logo.png" style="width: 200px;" /></a>
+<aside class="notes">
+Hola a todos.</aside>
+</section>
+<section>
+<section  id="id1">
+<h2>👋</h2>
+<aside class="notes">
+Hacía mucho que no nos reuníamos para celebrar un meetup Python Málaga.</aside>
+</section>
+<section data-transition="convex" id="marzo-2020">
+<h3>Marzo 2020</h3>
+<aside class="notes">
+La última vez fue el 4 de marzo de 2020. Mes que muchos recordaréis.</aside>
+</section>
+<section  id="estamos-de-vuelta">
+<h3>Estamos de vuelta</h3>
+<pre data-id="estamos-de-vuelta"><code data-trim data-noescape class="python">&gt;&gt;&gt; import datetime
+&gt;&gt;&gt; import humanize
+&gt;&gt;&gt; delta = datetime.datetime(2022, 10, 27) - datetime.datetime(2020, 3, 4)
+&gt;&gt;&gt; humanize.i18n.activate(&quot;es_ES&quot;)
+&gt;&gt;&gt; print(repr(humanize.precisedelta(delta)))
+&quot;2 años, 7 meses y 23 días&quot;</code></pre>
+<aside class="notes">
+Pero ya estamos aquí. 2 años, 7 meses y 23 días después.</aside>
+</section>
+<section  id="python-malaga">
+<h3>Python <strong>Málaga</strong></h3>
+<img alt="_images/python-malaga-logo.png" src="_images/python-malaga-logo.png" />
+<aside class="notes">
+Y quiero agradecer tanto a Python Málaga como a Codespace por cedernos este espacio, por la oportunidad de estar
+aquí todos juntos de nuevo. Gracias.</aside>
+</section>
+<section data-transition="concave" id="sobre-mi">
+<h3>Sobre mí <strong>Nekmo</strong></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="_images/cara.svg"><img alt="_images/cara.svg" src="_images/cara.svg" width="200px" /></a>
+<p><em>Programando en Python desde 2006</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+Pero bueno, dejad de que me presente. Soy Juan José, más conocido en redes como Nekmo, y llevo programando en
+Python más de media vida.</aside>
+</section>
+<section  id="python-2-5">
+<h3>Python <strong>2.5</strong></h3>
+<aside class="notes">
+Mi primera versión de Python fue la 2.5. Han pasado ya muchos años, y con cada nueva versión no
+dejan de traer novedades.</aside>
+</section>
+</section>
+<section>
+<section  id="id2">
+<h2>¿Qué hay de nuevo en <strong>Python 3.11</strong>?</h2>
+<aside class="notes">
+Ahora, ¿qué hay de nuevo en Python 3.11?</aside>
+</section>
+<section data-transition="zoom" id="listado-de-cambios">
+<h3>Listado  de cambios</h3>
+<ul class="simple">
+<li><p><strong>PEP 654:</strong> Exception Groups y except*.</p></li>
+<li><p><strong>PEP 678:</strong> Enriquecer excepciones con notas.</p></li>
+<li><p><strong>PEP 680:</strong> tomllib.</p></li>
+<li><p><strong>PEP 657:</strong> Mejoras en las indicaciones de error en los tracebacks.</p></li>
+<li><p>Opción <code class="docutils literal notranslate"><span class="pre">-P</span></code> en la línea de comandos y variable de entorno <code class="docutils literal notranslate"><span class="pre">PYTHONSAFEPATH</span></code>.</p></li>
+<li><p><strong>PEP 646:</strong> Variadic Generics.</p></li>
+<li><p><strong>PEP 655:</strong> TypedDict Required/NotRequired.</p></li>
+<li><p><strong>PEP 673:</strong> Tipo Self.</p></li>
+<li><p><strong>PEP 675:</strong> Tipo de cadena literal arbitraria</p></li>
+<li><p><strong>PEP 681:</strong> Data Class Transforms</p></li>
+<li><p>Módulos obsoletos (PEP 594),  Py_UNICODE API eliminada (PEP 624) y macros convertidas a funciones estáticas en línea
+(PEP 670).</p></li>
+</ul>
+<aside class="notes">
+Pues este sería el listado de todos los cambios, los cuales se pueden consultar en la web oficial de Python.
+El más importante son los exception groups para agrupar excepciones, mejoras en los tracebacks, el nuevo módulo
+tomllib y novedades en el tipado.</aside>
+</section>
+<section  id="gracias">
+<h3>Gracias</h3>
+<aside class="notes">
+Y hasta aquí la charla. Muchas gracias a todos por venir. (PAUSA) Ahora en serio, vamos a ir viendo cada uno de
+estos cambios, aunque me tendré que detener bastante en el primero de ellos porque es el más importante y más
+interesante.</aside>
+</section>
+</section>
+<section>
+<section  id="pep-654-exception-groups-y-except">
+<h2><strong>PEP 654:</strong> Exception Groups y except*</h2>
+<aside class="notes">
+La primera de estas novedades son los exception groups y el nuevo except* con asterisco, con PEP 654.</aside>
+</section>
+<section >
+<pre data-id="pep-654-exception-groups-y-except"><code data-trim data-noescape class="python" data-line-numbers="1-2,7,12|11-14|5-7|13-14"> class NameError(Exception):
+     pass
+
+
+ def validate_name(value: str) -&gt; None:
+     if not value.istitle():
+         raise NameError(&quot;El nombre debe empezar por mayúscula.&quot;)
+
+
+ form = {&quot;name&quot;: &quot;nekmo&quot;}
+ try:
+     validate_name(form[&quot;name&quot;])
+ except NameError as err:
+     print(err)  # Salta el error</code></pre>
+<aside class="notes">
+Aquí tenemos una excepción tradicional de Python, a lo cual lo normal es lanzar una única excepción (1) y
+capturarla (2). En la función validamos la entrada, y si no valida se lanza una excepción (3),
+la cual se captura en el except y se muestra por pantalla (4).</aside>
+</section>
+<section data-transition="zoom">
+<img alt="_images/validacion-formulario.png" src="_images/validacion-formulario.png" />
+<aside class="notes">
+Pero en nuestro caso tenemos un formulario. Un formulario en el que nuestro usuario comete varios errores, y
+queremos mostrarle al usuario todos los errores de golpe, no excepción por excepción. Necesitamos agruparlos.</aside>
+</section>
+<section >
+<pre data-id="pep-654-exception-groups-y-except"><code data-trim data-noescape class="python" data-line-numbers="13,17|8-10,14,19|21|22-23"> from typing import Iterable, Tuple, Dict, Callable
+
+
+ class NumberError(Exception):
+     pass
+
+
+ def validate_age(value: str) -&gt; None:
+     if not value.isdigit():
+         raise NumberError(&quot;La edad debe ser un valor numérico.&quot;)
+
+
+ form = {&quot;name&quot;: &quot;nekmo&quot;, &quot;age&quot;: &quot;diez&quot;}
+ form_validations = [(&quot;name&quot;, validate_name), (&quot;age&quot;, validate_age)]
+ exceptions = []
+
+ for form_key, input_validation in input_validations:
+     try:
+         input_validation(form[form_key])
+     except Exception as err:
+         exceptions.append(value)
+ if exceptions:
+     raise ExceptionGroup(&quot;errors message&quot;, exceptions)</code></pre>
+<aside class="notes">
+En este segundo ejemplo iteramos sobre todos los valores del formulario (1), aplicamos su validación (2) y si hay un
+error lo añadimos al listado de excepciones (3). Si hay errores lanzamos el ExceptionGroup con sus exceptions (4).</aside>
+</section>
+<section >
+<img alt="_images/json.png" src="_images/json.png" />
+<aside class="notes">
+Esto como os imaginaréis es muy útil en casos como un JSON, o cuando nos vienen varios datos de entrada a validar,
+como en el ejemplo del formulario. Pero claro, os estaréis preguntando. ¿Para qué esto si sólo es crear un listado
+de excepciones con un nuevo tipo de excepción?</aside>
+</section>
+<section  id="except">
+<h3>except*</h3>
+<aside class="notes">
+La verdadera novedad  comienza usando el nuevo except con asterisco.</aside>
+</section>
+<section >
+<pre data-id="except"><code data-trim data-noescape class="python" data-line-numbers="1-8|3-5|6-8"> try:
+     read_inputs()
+ except* NameError as eg:
+     # Si hay errores NameError esto se llama
+     print(f&quot;Errores en el nombre: {eg.exceptions}&quot;)
+ except* NumberError as eg:
+     # Y si hay errores NumberError, esto también
+     print(f&quot;Errores numéricos: {eg.exceptions}&quot;)</code></pre>
+<aside class="notes">
+Podemos utilizarlo para capturar múltiples exceptiones agrupadas diferenciadas por tipo. Y lo que es mejor, a
+diferencia de lo habital que es que el except no continúe ante la primera coincidencia, con el except con asterísco
+sí que sigue. (LEER EJEMPLO).</aside>
+</section>
+<section >
+<pre data-id="except"><code data-trim data-noescape class="python">raise ExceptionGroup(&quot;nested&quot;,
+    [
+         ValueError(654),
+         ExceptionGroup(&quot;imports&quot;,
+             [
+                 ImportError(&quot;no_such_module&quot;),
+                 ModuleNotFoundError(&quot;another_module&quot;),
+             ]
+         ),
+         TypeError(&quot;int&quot;),
+     ]</code></pre>
+<aside class="notes">
+Por si fuese poco, también podemos meter excepciones dentro de otras. Esto es especialmente útil en casos como un
+JSON, en que tenemos múltiples niveles. También es útil en ejecución asíncrona, en que varias funciones lanzan a
+su vez varias excepciones. Justamente algo similar al ExceptionGroup lo tenía Trio con el MultiError,
+aunque ahora lo tenemos de serie.</aside>
+</section>
+</section>
+<section data-background-color="#000000" data-background-image="_static/applause.gif" id="continuamos">
+<h2>¡Continuamos!</h2>
+<aside class="notes">
+No os preocupéis, esto era lo gordo. Lo que viene son cambios más pequeños, pero muchos muy interesantes.</aside>
+</section>
+<section  id="pep-678-enriquecer-excepciones-con-notas">
+<h2><strong>PEP 678:</strong> Enriquecer excepciones con notas</h2>
+<aside class="notes">
+Y seguimos con excepciones. El nuevo método PEP 678 permite añadir notas, aclaraciones, a las excepciones que se
+lanzan.</aside>
+</section>
+<section >
+<pre data-id="pep-678-enriquecer-excepciones-con-notas"><code data-trim data-noescape class="python" data-line-numbers="2|3|4|5"> try:
+      raise TypeError('bad type')
+ except Exception as e:
+      e.add_note('¡Ah, ah, ah! ¡No has dicho la palabra mágica!')
+      raise</code></pre>
+<aside class="notes">
+En este ejemplo se produce una excepción (1), se captura (2), se le añade una nota usando el nuevo método add_note
+disponible en Exception (3), y se vuelve a lanzar ya con la nota (4).</aside>
+</section>
+<section >
+<pre data-id="pep-678-enriquecer-excepciones-con-notas"><code data-trim data-noescape class="python" data-line-numbers="1-4|4"> Traceback (most recent call last):
+   File &quot;&lt;stdin&gt;&quot;, line 2, in &lt;module&gt;
+ TypeError: bad type
+ ¡Ah, ah, ah! ¡No has dicho la palabra mágica!</code></pre>
+<aside class="notes">
+Y cuando se produce la excepción, la nota es mostrada en una segunda línea. Así se simple. Genial para aclaraciones y
+otras anotaciones.</aside>
+</section>
+<section >
+<pre data-id="pep-678-enriquecer-excepciones-con-notas"><code data-trim data-noescape class="python">+ Exception Group Traceback (most recent call last):
+|   File &quot;test.py&quot;, line 4, in test
+|     def test(x):
+|
+|   File &quot;hypothesis/core.py&quot;, line 1202, in wrapped_test
+|     raise the_error_hypothesis_found
+|     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| ExceptionGroup: Hypothesis found 2 distinct failures.
++-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File &quot;test.py&quot;, line 6, in test
+    |     assert x &gt; 0
+    |     ^^^^^^^^^^^^
+    | AssertionError: assert -1 &gt; 0
+    |
+    | Falsifying example: test(
+    |     x=-1,
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File &quot;test.py&quot;, line 5, in test
+    |     assert x &lt; 0
+    |     ^^^^^^^^^^^^
+    | AssertionError: assert 0 &lt; 0
+    |
+    | Falsifying example: test(
+    |     x=0,
+    | )
+    +------------------------------------</code></pre>
+<aside class="notes">
+Y por supuesto, esto también puede utilizarse con los ExceptionGroup - Ya veis lo que me gustan - de forma que
+añadimos información adicional sobre la parte del exception group en que ha sucedido. Y de paso, ¡ahora podéis
+conseguir que vuestros tracebacks den miedo! Como este de aquí.</aside>
+</section>
+<section  id="pep-657-mejoras-en-las-indicaciones-de-error-en-los-tracebacks">
+<h2><strong>PEP 657:</strong> Mejoras en las indicaciones de error en los tracebacks</h2>
+<aside class="notes">
+Y seguimos con tracebacks de error. Vamos a ver las mejoras que se han hecho en los mensaje de traceback.</aside>
+</section>
+<section data-auto-animate>
+<pre data-id="pep-657-mejoras-en-las-indicaciones-de-error-en-los-tracebacks"><code data-trim data-noescape class="python" data-line-numbers="5-6"> Traceback (most recent call last):
+   File &quot;distance.py&quot;, line 11, in &lt;module&gt;
+     print(manhattan_distance(p1, p2))
+   File &quot;distance.py&quot;, line 6, in manhattan_distance
+     return abs(point_1.x - point_2.x) + abs(point_1.y - point_2.y)
+ AttributeError: 'NoneType' object has no attribute 'x'</code></pre>
+<aside class="notes">
+Hasta ahora en Python, como recordaréis, lo habitual cuando hay varias variables en una sola línea y una de ellas es
+None, la única forma de encontrar la que provocaba el error era ponerse a depurar, porque el error no da bastante
+información.</aside>
+</section>
+<section data-auto-animate>
+<pre data-id="pep-657-mejoras-en-las-indicaciones-de-error-en-los-tracebacks"><code data-trim data-noescape class="python" data-line-numbers="4,6-8"> Traceback (most recent call last):
+   File &quot;distance.py&quot;, line 11, in &lt;module&gt;
+     print(manhattan_distance(p1, p2))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File &quot;distance.py&quot;, line 6, in manhattan_distance
+     return abs(point_1.x - point_2.x) + abs(point_1.y - point_2.y)
+                            ^^^^^^^^^
+ AttributeError: 'NoneType' object has no attribute 'x'</code></pre>
+<aside class="notes">
+Pero ahora con Python 3.11, ¡ya no hace falta depurar! Porque ahora tienes flechitas que te indican lo que es un
+None. Y no hay nada más fácil que seguir flechitas que indican lo que tienes que arreglar, ¿no?</aside>
+</section>
+<section >
+<pre data-id="pep-657-mejoras-en-las-indicaciones-de-error-en-los-tracebacks"><code data-trim data-noescape class="python" data-line-numbers="11-13"> Traceback (most recent call last):
+   File &quot;query.py&quot;, line 37, in &lt;module&gt;
+     magic_arithmetic('foo')
+   File &quot;query.py&quot;, line 18, in magic_arithmetic
+     return add_counts(x) / 25
+            ^^^^^^^^^^^^^
+   File &quot;query.py&quot;, line 24, in add_counts
+     return 25 + query_user(user1) + query_user(user2)
+                 ^^^^^^^^^^^^^^^^^
+   File &quot;query.py&quot;, line 32, in query_user
+     return 1 + query_count(db, response['a']['b']['c']['user'], retry=True)
+                                ~~~~~~~~~~~~~~~~~~^^^^^
+ TypeError: 'NoneType' object is not subscriptable</code></pre>
+<aside class="notes">
+Y el caso en que esto me ha parecido más útil es accediendo a diccionarios. Seguro que os ha pasado alguna vez
+acceder a un diccionario dentro de otro dentro de otro, y que a partir de cierto punto sea un None y no saber en
+qué nivel ocurre. Pues ahora se te indica. Con flechitas. ¿Qué más podemos pedir?</aside>
+</section>
+<section>
+<section  id="pep-680-tomllib">
+<h2><strong>PEP 680:</strong> Tomllib</h2>
+<aside class="notes">
+Y ahora, algo completamente diferente. Tenemos un nuevo módulo en la biblioteca estándar, Tomlib. ¿Pero qué significa
+TOML?</aside>
+</section>
+<section  id="tom-s-obvious-minimal-language">
+<h3>Tom's Obvious, Minimal Language</h3>
+<aside class="notes">
+Pues obviamente, Tom's Obvious Minimal Language. ¿Y por qué Tom?</aside>
+</section>
+<section >
+<img alt="_images/tom.png" src="_images/tom.png" />
+<aside class="notes">
+Algunos ya os lo habréis imaginado, pero es como se llama el creador de este lenguaje. Un poco egocéntrico pensaréis.
+Pero si le veis tan feliz es por una buena razón: es el fundador de Github, ahora millonario.</aside>
+</section>
+<section >
+<pre data-id="tom-s-obvious-minimal-language"><code data-trim data-noescape class="toml"># This is a TOML document
+
+title = &quot;TOML Example&quot;
+
+[owner]
+name = &quot;Tom Preston-Werner&quot;
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+data = [ [&quot;delta&quot;, &quot;phi&quot;], [3.14] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = &quot;10.0.0.1&quot;
+role = &quot;frontend&quot;</code></pre>
+<aside class="notes">
+Pero vayamos a lo que nos importa. Toml es un formato de archivo de configuración sencillo de entender y de editar
+por un humano, a diferencia de JSON. Solventa algunos de los problemas de Yaml como su falta de consistencia y
+ofrece más características que los ficheros ini en los que se basa.</aside>
+</section>
+<section >
+<pre data-id="tom-s-obvious-minimal-language"><code data-trim data-noescape class="python">import tomllib
+
+
+with open(&quot;fichero.toml&quot;) as f:
+    tomllib.load(f)</code></pre>
+<aside class="notes">
+Leer un fichero toml es muy sencillo, muy similar a como se hace con el módulo de json. No obstante, curiosamente
+no disponemos de un método de hacer un dump, por lo que no podemos escribir.</aside>
+</section>
+</section>
+<section  id="novedades-en-el-tipado">
+<h2>Novedades en el <strong>tipado</strong></h2>
+<aside class="notes">
+Y ahora, llega la sección favorita para los **tipos** que les gustan los *tipos*.</aside>
+</section>
+<section >
+<img alt="_images/badum.png" src="_images/badum.png" />
+<aside class="notes">
+No me lo tengáis en cuenta, por favor.</aside>
+</section>
+<section  id="pep-646-variadic-generics">
+<h2><strong>PEP 646:</strong> Variadic Generics</h2>
+<aside class="notes">
+Comenzamos con una novedad en el tipado de los generics, que nos permite tener tipados de salida en los métodos en
+función de cómo se defina para nuestra clase. Esta característica es interesante para módulos como TensorFlow, aunque
+para el público general tiene pocos usos.</aside>
+</section>
+<section >
+<pre data-id="pep-646-variadic-generics"><code data-trim data-noescape class="python" data-line-numbers="9-14|5,18|10-11,18-19|13-14,18,21|1-21"> from typing import Tuple, Generic, TypeVarTuple, TypeVar
+
+
+ T = TypeVar('T')
+ Ts = TypeVarTuple('Ts')  # Esta es la novedad
+
+
+ # Aquí usamos el TypeVarTuple como definición para el tipo
+ class Array(Generic[*Ts]):
+     def multiply(self, x: int) -&gt; Tuple[*Ts]:  # Y aquí como return
+         ...
+
+     def add_dimension(self, t: T) -&gt; Tuple[T, *Ts]:
+         ...
+
+
+ # Ts en este caso será [float, int, str]
+ my_array: Array[float, int, str] = Array()
+ my_array.multiply(2)  # El tipo devuelto será Tuple[float, int, str]
+ # El tipo devuelto será Tuple[str, float, int, str]
+ my_array.add_dimension(&quot;spam&quot;)</code></pre>
+<aside class="notes">
+Bien, aquí tenemos nuestra propia clase Array (1), la cual puede recibir una definición de tipos cualesquiera
+llamada Ts, la cual usa el nuevo TypeVarTuple (2). Como podemos ver, multiply devuelve estos mismos valores de
+entrada (3), y add_dimension permite añadir un parámetro adicional (4).</aside>
+</section>
+<section data-background-color="#000000" data-background-image="_static/confused.gif">
+<aside class="notes">
+Esto puede parecer complicado, porque es complicado. Es un caso poco utilizado que es útil en ciertas bibliotecas de
+uso científico y que pueden requerir de vectores.</aside>
+</section>
+<section  id="pep-655-typeddict-required-notrequired">
+<h2><strong>PEP 655:</strong> TypedDict Required/NotRequired</h2>
+<aside class="notes">
+Seguimos con una novedad muy importante en TypedDict, de mis cosas favoritas en el tipado. La posibilidad de marcar
+claves como no requeridas de forma más fácil.</aside>
+</section>
+<section data-auto-animate>
+<pre data-id="pep-655-typeddict-required-notrequired"><code data-trim data-noescape class="python" data-line-numbers="1-9|4"> from typing import TypedDict
+
+
+ class Person(TypedDict, total=False):
+     name: str  # Queremos que sea obligatorio pero no lo es
+     surname: str  # Queremos que sea obligatorio pero no lo es
+     age: int
+
+ person: Person = {&quot;name&quot;: &quot;Juan&quot;, &quot;surname&quot;: &quot;Luna&quot;}</code></pre>
+<aside class="notes">
+Hasta ahora, la única forma de marcar claves como no requeridas era decir si la *totalidad* de las claves deben ser
+requeridas, o ninguna era requerida. Pero no se podían marcar una por una como requerida o no. Para ello teníamos el
+total. (1)</aside>
+</section>
+<section data-auto-animate>
+<pre data-id="pep-655-typeddict-required-notrequired"><code data-trim data-noescape class="python" data-line-numbers="4-10|4,9"> from typing import TypedDict
+
+
+ class PersonRequired(TypedDict, total=True):
+     name: str
+     surname: str
+
+
+ class Person(PersonRequired, total=False):
+     age: int
+
+ person: Person = {&quot;name&quot;: &quot;Juan&quot;, &quot;surname&quot;: &quot;Luna&quot;}</code></pre>
+<aside class="notes">
+Si queríamos que una clave sea requerida pero otras no, hasta ahora la única manera era hacer dos clases distintas
+(1), y definir en cada una de ellas si el total es True o False. (2)</aside>
+</section>
+<section data-auto-animate>
+<pre data-id="pep-655-typeddict-required-notrequired"><code data-trim data-noescape class="python" data-line-numbers="1-10|7"> from typing import NotRequired, Required, TypedDict
+
+
+ class Person(TypedDict):  # total=True por defecto
+     name: str
+     surname: str
+     age: NotRequired[int]  # age no será requerido por el NotRequired[]
+
+
+ person: Person = {&quot;name&quot;: &quot;Juan&quot;, &quot;surname&quot;: &quot;Luna&quot;}</code></pre>
+<aside class="notes">
+Lo que trae nuevo este nuevo PEP con los nuevos Required y NotRequired, es que permiten definir claves requeridas o
+no requeridas (1). En este caso todo es requerido salvo el age, que lo marcamos como no requerido.</aside>
+</section>
+<section data-transition="zoom">
+<pre data-id="pep-655-typeddict-required-notrequired"><code data-trim data-noescape class="python" data-line-numbers="1-10|4|5-6"> from typing import NotRequired, Required, TypedDict
+
+
+ class Person(TypedDict, total=False):
+     name: Required[str]
+     surname: Required[str]
+     age: int
+
+
+ person: Person = {&quot;name&quot;: &quot;Juan&quot;, &quot;surname&quot;: &quot;Luna&quot;}</code></pre>
+<aside class="notes">
+También podemos hacerlo al revés (1), marcando todo como como no requerido con el total False (2), y marcar uno por
+uno como requerido.</aside>
+</section>
+<section data-background-color="#000000" data-background-image="_static/thumb.gif">
+<aside class="notes">
+Como veis, ahora es mucho más fácil y requiere escribir menos código. Y tener que escribir menos código siempre es
+bien.</aside>
+</section>
+<section  id="pep-673-tipo-self">
+<h2><strong>PEP 673:</strong> Tipo Self</h2>
+<aside class="notes">
+Self nos sirve para añadir de forma sencilla la forma de anotar que un método devuelve una instancia de la misma
+clase. Antes podíamos hacer un apaño con los generics, pero esta forma es más sencilla y encima evitamos problemas
+de dependencias circulares.</aside>
+</section>
+<section >
+<pre data-id="pep-673-tipo-self"><code data-trim data-noescape class="python" data-line-numbers="10-11"> from typing import Self
+
+
+ class Customer:
+
+     def __init__(self, name: str, age: int):
+         self.name = name
+         self.age = age
+
+     def __copy__(self) -&gt; Self:
+         return self.__class__(self.name, self.age)</code></pre>
+<aside class="notes">
+En este ejemplo tenemos un método copy que devuelve una nueva instancia de Customer. En vez de usar genéricos o
+decir que se devuelve la misma clase, podemos usar el nuevo Self. Mucho más sencillo.</aside>
+</section>
+<section>
+<section  id="pep-675-literalstring">
+<h2><strong>PEP 675:</strong> LiteralString</h2>
+<aside class="notes">
+El nuevo tipo LiteralString está hecho pensando en la seguridad, para evitar fallos de seguridad como un SQL
+Injection.</aside>
+</section>
+<section >
+<pre data-id="pep-675-literalstring"><code data-trim data-noescape class="python" data-line-numbers="1-11|8|11"> from typing import LiteralString, Iterable, Any
+
+
+ def execute(sql: LiteralString, *params: Iterable[Any]):
+     ...
+
+# Esta línea validará, porque pasamos los parámetros de forma segura
+execute(&quot;SELECT * FROM data WHERE user_id = ?&quot;, [123])
+
+# Esta línea dará error, porque se modifica el string de entrada previamente
+execute(f&quot;SELECT * FROM data WHERE user_id = {user_id}&quot;)  # MEEH! Error.</code></pre>
+<aside class="notes">
+Usando LiteralString, el string de entrada tendrá que venir sin manipular tal y como viene en el código
+fuente (1). En el primer ejemplo validará porque no se modifica (2), pero en el segundo al haber una manipulación,
+al no venir tal cual está en el código fuente, dará un error en el tipado. Como veis este último caso sería un SQL
+Injection de manual.</aside>
+</section>
+<section data-background-color="#000000" data-background-image="_static/security.gif" id="mas-seguridad">
+<h3>Más seguridad</h3>
+<aside class="notes">
+Como veis, con los tipos no sólo podéis evitar problemas de programación típicos, sino también evitar fallos de
+seguridad en vuestras aplicaciones.</aside>
+</section>
+</section>
+<section  id="pep-681-data-class-transforms">
+<h2><strong>PEP 681:</strong> Data Class Transforms</h2>
+<aside class="notes">
+PEP 681. Este PEP es interesante para los creadores de frameworks y bibliotecas, como pueden ser Django, Pydantic o
+SQLAlchemy.</aside>
+</section>
+<section >
+<pre data-id="pep-681-data-class-transforms"><code data-trim data-noescape class="python"># La clase ``ModelBase`` está definida en la biblioteca.
+&#64;typing.dataclass_transform()
+class ModelBase: ...
+
+
+# La clase ``ModelBase`` puede ser usado para crear nuevos modelos,
+# similar a como se hace en estos frameworks.
+class CustomerModel(ModelBase):
+    id: int</code></pre>
+<aside class="notes">
+Estas bibliotecas han creado sus propias clases para crear modelos, similares a los dataclass de Python. Ahora
+tienen una forma de definir un tipado para sus clases base, para indicar que éstas se comportarán como un dataclass
+de Python.</aside>
+</section>
+<section >
+<pre data-id="pep-681-data-class-transforms"><code data-trim data-noescape class="python">def dataclass_transform(
+    *,
+    eq_default: bool = True,
+    order_default: bool = False,
+    kw_only_default: bool = False,
+    field_specifiers: tuple[type | Callable[..., Any], ...] = (),
+    **kwargs: Any,
+) -&gt; Callable[[_T], _T]: ...</code></pre>
+<aside class="notes">
+Por defecto el nuevo tipo se comportará como un dataclass al ser identificado, aunque usando la función
+dataclass_transform pueden cambiarse las opciones por defecto hacer la transformación. En conclusión, este tipado es
+útil si se está creando un modelo de clases similares a los dataclass.</aside>
+</section>
+<section  id="que-otras-novedades-hay">
+<h2>¿Qué otras novedades hay?</h2>
+<ul class="simple">
+<li class="fragment"><p>Nuevo argumento <code class="docutils literal notranslate"><span class="pre">-P</span></code> en la línea de comandos y variable de entorno <code class="docutils literal notranslate"><span class="pre">PYTHONSAFEPATH</span></code> para
+<strong>evitar ejecutar código inseguro</strong>.</p></li>
+<li class="fragment"><p><strong>PEP 594</strong>: Eliminar módulos muertos de la librería estándar (deprecated, a eliminar en 3.13).</p></li>
+<li class="fragment"><p><strong>PEP 624</strong>: Eliminadas las APIs de codificación de Py_UNICODE.</p></li>
+<li class="fragment"><p><strong>PEP 670</strong>: Convertir macros a funciones en la API en C de Python.</p></li>
+<li class="fragment"><p><strong>¡Y es más rápido!</strong> (10-60% respecto Python 3.10).</p></li>
+</ul>
+<aside class="notes">
+¿Y qué otras novedades hay? Tenemos... (leer puntos).</aside>
+</section>
+<section  id="mas-informacion">
+<h2>Más información</h2>
+<p><a class="reference external" href="https://docs.python.org/3.11/whatsnew/3.11.html">https://docs.python.org/3.11/whatsnew/3.11.html</a></p>
+<aside class="notes">
+En la web oficial de Python podéis encontrar el detalle sobre todas estas novedades. Podéis o bien copiar esta URL,
+o buscarlo en Google y os saldrá de lo primero.</aside>
+</section>
+<section>
+<section data-transition="convex" id="como-puedo-conseguirlo">
+<h2>¿Cómo puedo conseguirlo?</h2>
+<p class="fragment"><strong>¡¡Ya disponible!!</strong></p>
+<aside class="notes">
+¿Y cómo puedes conseguirlo? Pues bien, ¡ya está disponible! Python 3.11 salió literalmente hace dos días. Podéis
+bajarlo desde la web de Python, desde vuestra distribución si ya lo tuviese o compilándolo desde los fuentes.</aside>
+</section>
+<section  id="desde-los-fuentes">
+<h3>¿Desde los fuentes?</h3>
+<p><a class="reference external" href="https://www.build-python-from-source.com/">https://www.build-python-from-source.com/</a></p>
+<aside class="notes">
+Si queréis compilarlo desde los fuentes en esta web disponéis de una ayuda sobre cómo hacerlo. No hace falta tener
+grandes conocimientos técnicos.</aside>
+</section>
+<section data-background-color="#ffffff" data-background-size="contain" data-background-image="_static/sam.png" data-transition="zoom" id="python-te-necesita">
+<h3>Python te necesita</h3>
+<aside class="notes">
+Y recordad, que podéis ir probando las nuevas versiones de Python antes de su fecha de lanzamiento oficial. Tras la
+primera beta no suele haber importantes cambios y probándolas y dándoles soporte permitís encontrar fallos en el
+intérprete antes de su día de salida. Os animo encarecidamente a hacerlo.</aside>
+</section>
+</section>
+<section>
+<section  id="muchas-gracias">
+<h2>¡Muchas gracias!</h2>
+<p class="fragment"><strong>Referencias</strong></p>
+<ul class="simple">
+<li class="fragment"><p><a class="reference external" href="https://docs.python.org/3.11/whatsnew/3.11.html">Qué hay de nuevo en Python 3.11 (doc oficial)</a>.</p></li>
+<li class="fragment"><p><a class="reference external" href="https://realpython.com/python311-exception-groups/">Preview exception groups (Real Python)</a>.</p></li>
+<li class="fragment"><p><a class="reference external" href="https://www.youtube.com/watch?v=hAj3nGzeSiQ">Python variadic generics (Anthony Explains)</a>.</p></li>
+</ul>
+<aside class="notes">
+Y hasta aquí la presentación. Os agradezco a todos por venir, y aquí os dejo algunas referencias utilizadas en
+esta presentación.</aside>
+</section>
+<section data-transition="zoom" id="y-la-presentacion">
+<h3>¿Y la presentación?</h3>
+<p><a class="reference external" href="https://github.com/Nekmo/python311-presentacion">github:Nekmo/python311-presentacion</a></p>
+<aside class="notes">
+Además de la presentación, por si queréis volver a verla.</aside>
+</section>
+<section data-background-color="#ffffff" data-background-size="contain" data-background-image="_static/qr.png">
+<aside class="notes">
+Además aquí la tenéis en forma de QR por si os es más cómodo, para no tener ni que escribir.</aside>
+</section>
+<section  id="contactar">
+<h3>Contactar</h3>
+<ul class="simple">
+<li><p><strong>Sitio web:</strong> <a class="reference external" href="https://nekmo.com">nekmo.com</a></p></li>
+<li><p><strong>Email:</strong> <a class="reference external" href="mailto:contacto&#37;&#52;&#48;nekmo&#46;com">contacto<span>&#64;</span>nekmo<span>&#46;</span>com</a></p></li>
+<li><p><strong>Twitter:</strong> <a class="reference external" href="https://twitter.com/nekmocom">&#64;nekmocom</a></p></li>
+<li><p><strong>Telegram:</strong> <a class="reference external" href="https://t.me/nekmo">&#64;nekmo</a></p></li>
+<li><p><strong>Jabber:</strong> <a class="reference external" href="xmpp://nekmo&#64;nekmo.org">nekmo&#64;nekmo.org</a></p></li>
+</ul>
+<aside class="notes">
+Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Además de mi email. Y Twitter.
+Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos! ¿Alguna pregunta?</aside>
+</section>
+</section>
+
+        </div>
+    </div>
+    
+    <script src="_static/revealjs4/dist/reveal.js"></script>
+    
+    
+      <script src="_static/revealjs4/plugin/notes/notes.js"></script>
+      <script src="_static/revealjs4/plugin/highlight/highlight.js"></script>
+      
+    
+    <script>
+        var revealjsConfig = new Object();
+        Object.assign(revealjsConfig, 
+    {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        margin: 0.2,        
+        transition: "slide",
+    }
+);
+        
+        
+        
+          revealjsConfig.plugins = [
+            RevealNotes,RevealHighlight,
+          ];
+        
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize(revealjsConfig);
+    </script>
+
+  </body>
+</html>
