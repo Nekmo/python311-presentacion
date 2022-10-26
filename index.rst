@@ -101,8 +101,8 @@ Python **2.5**
 .. Ahora, ¿qué hay de nuevo en Python 3.11?
 
 
-Listado cambios
----------------
+Listado  de cambios
+-------------------
 
 * **PEP 654:** Exception Groups y except*.
 * **PEP 678:** Enriquecer excepciones con notas.

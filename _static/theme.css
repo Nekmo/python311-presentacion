@@ -501,11 +501,16 @@ ul li {
   #python-2-5 h3 strong {
     font-family: "Satisfy"; }
 
-#listado-cambios ul li {
+#listado-de-cambios h3 {
+  font-size: 2em; }
+
+#listado-de-cambios ul li {
   line-height: 1em; }
-  #listado-cambios ul li p {
+  #listado-de-cambios ul li p {
     margin: 5px;
     font-size: 25px; }
+  #listado-de-cambios ul li strong {
+    color: #2b5b84; }
 
 #pep-657-mejoras-en-las-indicaciones-de-error-en-los-tracebacks {
   font-size: 0.8em; }
@@ -549,8 +554,13 @@ ul li {
     color: #ffffff;
     text-shadow: #ba4d53 3px 0 10px; }
 
+#que-otras-novedades-hay h2 {
+  font-size: 1.8em; }
+
 #que-otras-novedades-hay ul li p {
   margin: 2px; }
+  #que-otras-novedades-hay ul li p strong {
+    color: #2b5b84; }
 
 #y-no-podriamos-reducirlo, #ejemplo-web, #formulario {
   font-size: 0.6em; }

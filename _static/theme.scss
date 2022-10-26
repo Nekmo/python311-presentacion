@@ -291,13 +291,21 @@ ul li {
 }
 
 
-#listado-cambios {
+#listado-de-cambios {
+  h3 {
+    font-size: 2em;
+  }
+
   ul li {
     line-height: 1em;
 
     p {
       margin: 5px;
       font-size: 25px;
+    }
+
+    strong {
+      color: $hotPink;
     }
   }
 }
@@ -318,6 +326,7 @@ ul li {
     display: block;
   }
 }
+
 
 #novedades-en-el-tipado {
   h2 {
@@ -383,8 +392,16 @@ ul li {
 }
 
 #que-otras-novedades-hay {
+  h2 {
+    font-size: 1.8em;
+  }
+
   ul li p {
     margin: 2px;
+
+    strong {
+      color: $hotPink;
+    }
   }
 }
 
